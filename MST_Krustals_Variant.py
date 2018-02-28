@@ -44,7 +44,7 @@ class Graph(object):
         return self.g_dict.keys()
 
     def __tracer(self, visiting_vertex, visited_vertex=None, min_weigth=None):
-        output_debug = self.output_dict
+
         # starting variables
         visiting = visiting_vertex
         visiting_from = visited_vertex
@@ -54,7 +54,6 @@ class Graph(object):
 
         if visiting_from <> None:
             self.output_dict[visiting].append((visiting_from, min_weigth))
-        output_debug = self.output_dict
 
         # visit tracker
         self.visited_hist.append(visiting)
@@ -112,8 +111,6 @@ class Graph(object):
             self.previous_reserved = []
 
         self.output_dict[visiting].append((visiting_to, min_weigth))
-        #self.output_dict.update({visiting: [(visiting_to, min_weigth)]})
-        output_debug = self.output_dict
 
         self.__tracer(visiting_to, visiting, min_weigth)
 
