@@ -89,7 +89,10 @@ class Tree:
 
             node_L, node_R = self.parent_list
             self.parent_list = [None, None]
-            self.__findLCA(node_L, node_R)
+            try:
+                self.__findLCA(node_L, node_R)
+            except:
+                self.ancestor = self.parameters[0]
 
     def LCA(self):
         self.__findLCA(self.parameters[1], self.parameters[2])
@@ -103,22 +106,25 @@ def question4(T, r, n1, n2):
 
 
 # Test one
-question4(T3, 0, 8, 6) #<- testing root from both sides
-question4(T3, 0, 3, 6) #<- testing root form same sides
-question4(T3, 0, 3, 4) #<- testing direct parent
-question4(T3, 0, 2, 4) #<- testing direct ancestor
+question4(T3, 3, 0, 6) #<- testing root from both sides
+question4(T3, 3, 3, 8) #<- testing root form same sides
+question4(T3, 3, 5, 8) #<- testing long related
+question4(T3, 3, 6, 5) #<- testing direct parent
+question4(T3, 3, 5, 4) #<- testing direct ancestor
 print '-'
 
 # Test two
-question4(T2, 2, 7, 9) #<- testing root from both sides
-question4(T2, 2, 5, 9) #<- testing root form same sides
-question4(T2, 2, 7, 8) #<- testing direct parent
-question4(T2, 2, 1, 0) #<- testing direct ancestor
+question4(T2, 4, 0, 9) #<- testing root from both sides
+question4(T2, 4, 4, 9) #<- testing root form same sides
+question4(T2, 3, 2, 0) #<- testing long related
+question4(T2, 4, 9, 8) #<- testing direct parent
+question4(T2, 4, 1, 0) #<- testing direct ancestor
 print '-'
 
 # Test three
-question4(T1, 3, 1, 4) #<- testing root from both sides
-question4(T1, 3, 1, 2) #<- testing root form same sides
-question4(T1, 3, 0, 4) #<- testing direct parent
-question4(T1, 3, 0, 2) #<- testing direct ancestor
-print '-'
+question4(T1, 3, 0, 4) #<- testing root from both sides
+question4(T1, 3, 3, 1) #<- testing root form same sides
+question4(T1, 3, 1, 4) #<- testing long related
+question4(T1, 3, 2, 4) #<- testing direct parent
+question4(T1, 3, 1, 2) #<- testing direct ancestor
+print '-'''
