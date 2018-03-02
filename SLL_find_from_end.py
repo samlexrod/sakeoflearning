@@ -25,14 +25,20 @@ class LinkedList:
 
     def find_from_end(self, m):
 
+        out_of_range = True             # <- prevents out of range inputs
         counter = 1
         current = self.head
-        while counter < self.link_size - m:
+        while counter < self.link_size - m and m >= 0:
+            out_of_range = False
             current = current.next
             counter += 1
-        print "There are {} elements in the list.".format(self.link_size)
-        print "The element {} elements from the end is {}.".format(m, current.data)
-        return current.data
+        if out_of_range:
+            print "There are {} elements in the list.".format(self.link_size)
+            print "The one {} elements from the end is out of range.".format(m)
+        else:
+            print "There are {} elements in the list.".format(self.link_size)
+            print "The one {} elements from the end is {}.".format(m, current.data)
+            return current.data
 
 def speed_append(values):
     linked_list = LinkedList()
@@ -45,37 +51,19 @@ def question5(ll, m):
 
     return ll.find_from_end(m)
 
+
 # Test 1: Looking inside the range
-#ll = speed_append(range(1, 6))
-#print question5(ll, 3)
+ll = speed_append(range(1, 6))
+print question5(ll, 3)
 
 # Test 2: Looking outside the range
 ll = speed_append(range(1, 7))
 print question5(ll, 7)
 
 # Test 3: Looking at the end of the list
-
+ll = speed_append(range(1, 20))
+print question5(ll, 0)
 
 # Test 4: Looking before the end of the list
-
-
-'''
-# create object of the list
-
-e1 = Node(1)
-e2 = Node(2)
-e3 = Node(3)
-e4 = Node(4)
-e5 = Node(5)
-
-# insert new_element
-
-ll = LinkedList(e1) # <- starting object and adding the head to ll
-ll.append(e2)       # <- appending the element to ll
-ll.append(e3)       # <- appending the next element to ll
-ll.append(e4)
-ll.append(e5)
-
-ll.find_from_end(3)
-
-'''
+ll = speed_append(range(1, 7))
+print question5(ll, -1)
