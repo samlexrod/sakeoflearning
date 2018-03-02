@@ -85,9 +85,14 @@ class Graph(object):
                 change direction at this point only if the child was not already
                 visited.
                 """
-                self.previous_reserved.append((visiting, visiting_to, min_weigth)) # <- what is the purpose of the reserve?
+
+                # it keeps a deeper record of children path to be use on
+                # the next iteration
+                self.previous_reserved.append((visiting, visiting_to, min_weigth))
+
                 visiting_to = child
                 min_weigth = weight
+
             elif (min_weigth > weight or min_weigth == None) and child not in visited_list:
                 """ Here the children edge minimum is not set or the weight of this 
                 children edge is less than the one from before, so the trace will
@@ -97,10 +102,12 @@ class Graph(object):
 
                 visiting_to = child
                 min_weigth = weight
+
             elif child not in visited_list:
                 """ Here are the children visited that did not met
                 the minimum value.
                 """
+
                 self.previous_children.append((visiting, child, weight))
 
         # if trace is not over continue with bookmark
