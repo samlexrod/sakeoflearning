@@ -42,10 +42,9 @@ if parse:
 			write_this.append(str(content))
 
 		# finish the sentence
-		write_this.append('\n')
-		write_this = ','.join(write_this)
+		write_this = ','.join(write_this)+'\n'
 
-		#print(write_this)
+		print(write_this)
 		return write_this
 
 
@@ -76,7 +75,7 @@ if parse:
 			price = None
 
 		shipping = container.findAll("li", {"class":"price-ship"})[0].text.strip()
-		shipping = shipping[:shipping.find("Sh")].replace('$', '').replace('Free', '0.00')
+		shipping = shipping[:shipping.find(" Sh")].replace('$', '').replace('Free', '0.00')
 
 		# rating
 		try:
@@ -86,7 +85,7 @@ if parse:
 			rating = None
 			rating_size = None
 
-		print(brand, price, dollars, cents, shipping, rating, rating_size)
+		#print(brand, price, dollars, cents, shipping, rating, rating_size)
 
 		row = write_formatter([brand, title, price, shipping, rating, rating_size])
 
