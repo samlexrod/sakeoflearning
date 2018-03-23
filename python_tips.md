@@ -2,19 +2,39 @@
 
 > Here you will find a repository of data mining approaches. These approaches will be updated as I found new and improved ways to solve an issue. Please feel free to do a push request if you find a better way of approaching a problem. Thank you for visiting my repository!
 
+## Timing Processes
+
+```
+%time 	# time in seconds
+%timeit # mean and stdev per loop
+```
+
 
 ## Loading and Dumping Data
 
 ### Magic Command
 ```
-%matplotlib notebook	# interactive render
+%matplotlib notebook		# interactive render
 %matplotlib inline		# create plot instantly
 %matplotlib gtk			# create plot in new window
+```
+
+### Imports
+
+```
+from scipy.io import loadmat	# for MATLAB files
+```
+
+### Data Load
+
+```
+mat = loadmat('folder/data.mat')
 ```
 
 ## Dimensionality Reduction
 
 ### PCA
+> This is for linear relationships.
 
 - Getting Label Colors
 
@@ -64,4 +84,52 @@ df = pd.DataFrame(tran)
 df.columns = ['comp1', 'comp2']
 df.plotscatter(x='comp1', y='comp2', marker='o', c=labels, alpha=0.75)
 plt.show()
+```
+
+### Isomap
+> This is for non-linear relationships.
+
+- Applying Isomap
+
+```
+from sklearn.manifold import Isomap
+iso = Isomap(n_components=3, n_neighbors=8)
+iso.fit(df)
+tran = iso.transform(df)
+tran =  pd.DataFrame(tran)
+tran.columns = ['comp1', 'comp2', 'comp3']
+```
+
+- Plotting Isomap 2D
+
+- Using plot
+
+```
+tran.plot.scatter(x='comp1', y='comp2', maker='.', alpha=0.7)
+plt.title('Plot Version')
+plt.show()
+```
+
+- Using figure
+
+```
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.set_title('Figure Version')
+ax.set_xlabel(tran.comp1.name)
+ax.set_ylabel(tran.comp2.name)
+ax.scatter(tran.comp1, tran.comp2, maker='.', alpha=0.7)
+```
+
+- Plotting Isomap 3D
+
+```
+from mpl_toolkits.mplot3d import Axes3D
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.set_title('3D Version')
+ax.set_xlabel(tran.comp1.name)
+ax.set_ylabel(tran.comp2.name)
+ax.set_zlabel(tran.comp3.name)
+ax.scatter(tran.comp1, tran.comp2, tran.comp3, color='r', marker='.')
 ```
