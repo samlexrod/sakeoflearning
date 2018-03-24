@@ -89,6 +89,28 @@ plt.show()
 ### Isomap
 > This is for non-linear relationships.
 
+- Importing Images
+
+*conda config --add channels conda-forge*
+
+*conda install imread*
+
+```
+import scipy
+import os
+import pandas as pd
+from imread import imread
+
+samples = []
+path = os.getcwd() + '\\folder\\
+files = os.listdir('folder')
+for fname in files:
+	file = path + fname
+	img = imread(file)
+	samples.append((img[::2, ::2]/255.0).reshape(-1))
+df = pd.DataFrame(samples)
+```
+
 - Applying Isomap
 
 ```
@@ -102,7 +124,7 @@ tran.columns = ['comp1', 'comp2', 'comp3']
 
 - Plotting Isomap 2D
 
-- Using plot
+	- Using plot
 
 ```
 tran.plot.scatter(x='comp1', y='comp2', maker='.', alpha=0.7)
@@ -110,7 +132,7 @@ plt.title('Plot Version')
 plt.show()
 ```
 
-- Using figure
+	- Using figure
 
 ```
 fig = plt.figure()
@@ -124,6 +146,7 @@ ax.scatter(tran.comp1, tran.comp2, maker='.', alpha=0.7)
 - Plotting Isomap 3D
 
 ```
+%matplotlib notebook
 from mpl_toolkits.mplot3d import Axes3D
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
