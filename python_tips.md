@@ -5,8 +5,8 @@
 ## Timing Processes
 
 ```
-%time 	# time in seconds
-%timeit # mean and stdev per loop
+	%time 	# time in seconds
+	%timeit # mean and stdev per loop
 ```
 
 
@@ -14,21 +14,21 @@
 
 ### Magic Command
 ```
-%matplotlib notebook		# interactive render
-%matplotlib inline		# create plot instantly
-%matplotlib gtk			# create plot in new window
+	%matplotlib notebook		# interactive render
+	%matplotlib inline		# create plot instantly
+	%matplotlib gtk			# create plot in new window
 ```
 
 ### Imports
 
 ```
-from scipy.io import loadmat	# for MATLAB files
+	from scipy.io import loadmat	# for MATLAB files
 ```
 
 ### Data Load
 
 ```
-mat = loadmat('folder/data.mat')
+	mat = loadmat('folder/data.mat')
 ```
 
 ## Dimensionality Reduction
@@ -39,51 +39,51 @@ mat = loadmat('folder/data.mat')
 - Getting Label Colors
 
 ```
-labels = ['red' if x=='target1' else 'green' for x in df.target]
+	labels = ['red' if x=='target1' else 'green' for x in df.target]
 ```
 
 - Dropping Target
 
 ```
-df.drop('target_name', axis=1, inplace=True)
+	df.drop('target_name', axis=1, inplace=True)
 ```
 
 - Removing Nominal Data
 
 ```
-df1 = df.loc[:, list(df.dtypes!=object)]
+	df1 = df.loc[:, list(df.dtypes!=object)]
 ```
 
 - Converting Nominal Data to Dummies
 
 ```
-df2 = pd.get_dummies(df)
+	df2 = pd.get_dummies(df)
 ```
 
 - Feature Scaling
 
 ```
-df = df2 # or df1
-scaler = StandardScaler()
-df_scaled = scaler.fit_transform(df)
-df = pd.DataFrame(df_scaled, columns=df.columns)
+	df = df2 # or df1
+	scaler = StandardScaler()
+	df_scaled = scaler.fit_transform(df)
+	df = pd.DataFrame(df_scaled, columns=df.columns)
 ```
 
 - Applying Principal Component Analysis
 
 ```
-pca = PCA(n_components=2, svd_solver='auto')
-pca.fit(df)
-tran = pca.transform(df)
-df = pd.DataFrame(tran)
+	pca = PCA(n_components=2, svd_solver='auto')
+	pca.fit(df)
+	tran = pca.transform(df)
+	df = pd.DataFrame(tran)
 ```
 
 - Plotting PCA
 
 ```
-df.columns = ['comp1', 'comp2']
-df.plotscatter(x='comp1', y='comp2', marker='o', c=labels, alpha=0.75)
-plt.show()
+	df.columns = ['comp1', 'comp2']
+	df.plotscatter(x='comp1', y='comp2', marker='o', c=labels, alpha=0.75)
+	plt.show()
 ```
 
 ### Isomap
@@ -92,36 +92,36 @@ plt.show()
 - Importing Images
 
 ```
-# Installing imread
-conda config --add channels conda-forge
-conda install imread
+	# Installing imread
+	conda config --add channels conda-forge
+	conda install imread
 ```
 
 ```
-import scipy
-import os
-import pandas as pd
-from imread import imread
+	import scipy
+	import os
+	import pandas as pd
+	from imread import imread
 
-samples = []
-path = os.getcwd() + '\\folder\\
-files = os.listdir('folder')
-for fname in files:
-	file = path + fname
-	img = imread(file)
-	samples.append((img[::2, ::2]/255.0).reshape(-1))
-df = pd.DataFrame(samples)
+	samples = []
+	path = os.getcwd() + '\\folder\\
+	files = os.listdir('folder')
+	for fname in files:
+		file = path + fname
+		img = imread(file)
+		samples.append((img[::2, ::2]/255.0).reshape(-1))
+	df = pd.DataFrame(samples)
 ```
 
 - Applying Isomap
 
 ```
-from sklearn.manifold import Isomap
-iso = Isomap(n_components=3, n_neighbors=8)
-iso.fit(df)
-tran = iso.transform(df)
-tran =  pd.DataFrame(tran)
-tran.columns = ['comp1', 'comp2', 'comp3']
+	from sklearn.manifold import Isomap
+	iso = Isomap(n_components=3, n_neighbors=8)
+	iso.fit(df)
+	tran = iso.transform(df)
+	tran =  pd.DataFrame(tran)
+	tran.columns = ['comp1', 'comp2', 'comp3']
 ```
 
 - Plotting Isomap 2D
@@ -129,32 +129,32 @@ tran.columns = ['comp1', 'comp2', 'comp3']
 	- Using plot
 
 ```
-tran.plot.scatter(x='comp1', y='comp2', maker='.', alpha=0.7)
-plt.title('Plot Version')
-plt.show()
+	tran.plot.scatter(x='comp1', y='comp2', maker='.', alpha=0.7)
+	plt.title('Plot Version')
+	plt.show()
 ```
 
 	- Using figure
 
 ```
-fig = plt.figure()
-ax = fig.add_subplot(111)
-ax.set_title('Figure Version')
-ax.set_xlabel(tran.comp1.name)
-ax.set_ylabel(tran.comp2.name)
-ax.scatter(tran.comp1, tran.comp2, maker='.', alpha=0.7)
+	fig = plt.figure()
+	ax = fig.add_subplot(111)
+	ax.set_title('Figure Version')
+	ax.set_xlabel(tran.comp1.name)
+	ax.set_ylabel(tran.comp2.name)
+	ax.scatter(tran.comp1, tran.comp2, maker='.', alpha=0.7)
 ```
 
 - Plotting Isomap 3D
 
 ```
-%matplotlib notebook
-from mpl_toolkits.mplot3d import Axes3D
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-ax.set_title('3D Version')
-ax.set_xlabel(tran.comp1.name)
-ax.set_ylabel(tran.comp2.name)
-ax.set_zlabel(tran.comp3.name)
-ax.scatter(tran.comp1, tran.comp2, tran.comp3, color='r', marker='.')
+	%matplotlib notebook
+	from mpl_toolkits.mplot3d import Axes3D
+	fig = plt.figure()
+	ax = fig.add_subplot(111, projection='3d')
+	ax.set_title('3D Version')
+	ax.set_xlabel(tran.comp1.name)
+	ax.set_ylabel(tran.comp2.name)
+	ax.set_zlabel(tran.comp3.name)
+	ax.scatter(tran.comp1, tran.comp2, tran.comp3, color='r', marker='.')
 ```
