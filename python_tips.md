@@ -91,9 +91,11 @@ plt.show()
 
 - Importing Images
 
-*conda config --add channels conda-forge*
-
-*conda install imread*
+```
+# Installing imread
+conda config --add channels conda-forge
+conda install imread
+```
 
 ```
 import scipy
