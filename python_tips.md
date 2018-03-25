@@ -31,6 +31,114 @@
 	mat = loadmat('folder/data.mat')
 ```
 
+## Data Munging
+
+- **Lowering all Column Names**
+
+```
+	df.columns = df.columns.str.lower()
+```
+
+- **Coercing Values**
+
+```
+	# coercing to numeric
+	df.numbers = pd.to_numeric(df.numbers, errors='coerce')
+
+	# coercing to date
+	df.date = pd.to_datetime(df.date, errors='coerce')
+```
+
+- **Dropping Nulls**
+
+```
+	# column drop
+	df.dropna(axis=1, inplace=True)
+
+	# row drop
+	df.dropna(axis=0, inplace=True)
+
+	# use thresh parameter to specify how many nulls are you willing to keep
+```
+
+- **Drop Specific Rows**
+
+```
+	# get the row indexes
+	drop_this = df[df.col1.isnull()].index
+
+	# drop the stated indexes
+	df.drop(drop_this, inplace=True)
+
+	# you migh want to reset index by using df.reset_index
+```
+
+- **Drop Specific Columns**
+
+```
+	# drop method delete last 2 columns
+	df.drop(df.columns[-2:], axis=1, inplace=True)
+
+	# drop method delete specific columns
+	df.drop(['colname1', 'colname2'], axis=1, inplace=True)
+
+	# index slicing delete last 2 colums
+	df = df.iloc[:, :-2]
+```
+
+- **Reset Index***
+
+```
+	# shows the old index and new without committing
+	df.reset_index()
+
+	# drops the old index and commits
+	df.reset_index(drop=True, inplace=True)
+```
+
+- **Replace Null Values with Values**
+
+```
+	df.fillna(0)
+	df.fillna(df.mean(axis=0))
+	df.fillna(method='ffill')
+	df.fillna(method='bfill')
+```
+
+## Exploring Data
+
+- **Null value percentages**
+
+```
+	df.isna().sum() / df.count() * 100
+```
+
+- **Showing all Rows with Null**
+
+```
+	# whole table
+	df[df.column_most_null.isnull()]
+
+	# selected columns
+	df[['col1', 'col2', 'col3']][df.column_most_null.isnull()]
+```
+
+- **Finding Conditions in Rows**
+
+```
+	df.col1.str.contains(' ')
+```
+
+- **Using Conditions to Find Rows**
+
+```
+	# always use parenthesis to avoid errors
+	condition = (df.col1.str.contains(' ') & (df.col2.isnull())
+	condition = (df.col1 == 'text') | (df.col2 != 'text')
+	df[condition]
+```
+
+
 ## Dimensionality Reduction
 
 ### PCA
@@ -134,8 +242,10 @@
 	plt.show()
 ```
 
-	- Using figure
+- Plotting Isomap 2D
 
+	- Using figure
+	
 ```
 	fig = plt.figure()
 	ax = fig.add_subplot(111)
@@ -157,4 +267,32 @@
 	ax.set_ylabel(tran.comp2.name)
 	ax.set_zlabel(tran.comp3.name)
 	ax.scatter(tran.comp1, tran.comp2, tran.comp3, color='r', marker='.')
+```
+
+## Classifiers
+
+### K-means
+
+- **Fit the Model**
+
+```
+	from sklearn.cluster import KMeans
+
+	# choose the number of clusters
+	model = KMeans(n_clusters=4)
+	model.fit(df)	
+```
+
+- **Plot the Values and Centroids**
+
+```
+	fig = plt.figure()
+	ax = fig.add_subplot(111)
+	ax.scatter(df.col1, df.col2, marker='.', alpha=0.3)
+	ax.set_title('title')
+	ax.set_xlabel('xname')
+	ax.set_ylabel('yname')
+	centroids = model.cluster_centers_
+	ax.scatter(centroids[:,0], centroids[:,1], marker='x', c='r', alpha='0.5, linewidths=3, s=169)
+	plt.show()
 ```
