@@ -14,9 +14,10 @@
 
 ### Magic Command
 ```
-	%matplotlib notebook		# interactive render
-	%matplotlib inline		# create plot instantly
-	%matplotlib gtk			# create plot in new window
+	%matplotlib notebook				# interactive render
+	%matplotlib inline				# create plot instantly
+	%matplotlib gtk					# create plot in new window
+	matplotlibe.style.use('ggplot') # ggplot look
 ```
 
 ### Imports
@@ -47,6 +48,9 @@
 
 	# coercing to date
 	df.date = pd.to_datetime(df.date, errors='coerce')
+
+	# coercing to time
+	df.time = pd.to_timedelta(df.time, errors='coerce')
 ```
 
 - **Dropping Nulls**
@@ -126,7 +130,16 @@
 - **Finding Conditions in Rows**
 
 ```
+	# conditions on string
 	df.col1.str.contains(' ')
+
+	# conditions not on string
+	df.col1.astype('str').str.contains('727')
+
+	# multiple conditions
+	condition = (df.col1 == 'text') | \
+				((df.col1 == 0) & \
+				(df.col2 == 30))
 ```
 
 - **Using Conditions to Find Rows**
@@ -138,6 +151,56 @@
 	df[condition]
 ```
 
+- **Grouping Aggregates**
+
+```
+	# counting the number of values
+	df.groupby(['col1']).count()
+
+	# summing the numric values
+	df.groupby(['col1']).sum()
+
+	# average by group
+	df.groupby(['col1']).mean()	
+
+	# aggregate and select one column
+	df.groupby(['col1'])[['col2']].sum()
+```
+
+- **Investigating Data Types**
+
+```
+	df.dtypes
+```
+
+- **Descriptive Statistics**
+
+```
+	df.describe()
+```
+
+- **Quick Plots**
+
+```
+	df.plot. # press tab to see the list of options
+	df.plot.box()
+```
+
+## Transforming Data
+[http://http://pandas.pydata.org/pandas-docs/stable/merging.html](http://http://pandas.pydata.org/pandas-docs/stable/merging.html "Best to go here!")
+
+
+- **Removing Outliers** 
+## Scaling Methods
+
+- **Standard Scaler**
+
+```
+	tran = preprocessing.StandardScaler().fit_transform(df)
+	tran = preprocessing.MinMaxScaler().fit_transform(df)
+	tran = preprocessing.MaxAbsScaler().fit_transform(df)
+	tran = preprocessing.Normalizer().fit_transform(df)
+```
 
 ## Dimensionality Reduction
 
@@ -295,4 +358,24 @@
 	centroids = model.cluster_centers_
 	ax.scatter(centroids[:,0], centroids[:,1], marker='x', c='r', alpha='0.5, linewidths=3, s=169)
 	plt.show()
+```
+
+- **Running KMeans on PCA**
+
+
+```
+	# selecting colors and scaling
+	c_color_list = ['r', ''g', 'b', 'o']
+	labels = model.labels_
+	df_t = preprocessing.MinMaxScaler().fit_transform(df)
+	c_color = [c_color_list[label[i]] for i in range(len(df_t))]
+
+	# processing PCA
+	pca = PCA(n_components=2, svd_solver='randomized', random_state=7)
+	pca.fit(df_t)
+	tran = pca.transform(df_t)
+	df_t = pd.DataFrame(df_t, columns=['col1', 'col2'])
+	
+	# plotting
+	ax.scatter(df_t.col1, df_t.col2, c=c_color, marker='o', alpha=0.2)	
 ```
