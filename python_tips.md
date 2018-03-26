@@ -138,8 +138,8 @@
 
 	# multiple conditions
 	condition = (df.col1 == 'text') | \
-				((df.col1 == 0) & \
-				(df.col2 == 30))
+		    ((df.col1 == 0) & \
+		    (df.col2 == 30))
 ```
 
 - **Using Conditions to Find Rows**
