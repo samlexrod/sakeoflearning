@@ -2,6 +2,14 @@
 
 > Here you will find a repository of data mining approaches. These approaches will be updated as I found new and improved ways to solve an issue. Please feel free to do a push request if you find a better way of approaching a problem. Thank you for visiting my repository!
 
+Data Science Pipeline
+	1. Data Collection
+	2. Data Definition
+	3. Data Preprocessing
+	4. Data Exploration
+	5. Predicting Modeling
+	6. Reporting
+
 ## Timing Processes
 
 ```
@@ -30,6 +38,7 @@
 
 ```
 	mat = loadmat('folder/data.mat')
+	df = pd.read_csv('folder/data.csv', sep=',', index_col=0)
 ```
 
 ## Data Munging
@@ -59,7 +68,7 @@
 	# column drop
 	df.dropna(axis=1, inplace=True)
 
-	# row drop
+	# row drop, which is the default
 	df.dropna(axis=0, inplace=True)
 
 	# use thresh parameter to specify how many nulls are you willing to keep
@@ -100,21 +109,54 @@
 	df.reset_index(drop=True, inplace=True)
 ```
 
-- **Replace Null Values with Values**
+- **Imputations: Replace Null Values with Values**
 
 ```
+	# fill with zero
 	df.fillna(0)
+
+	# fill with the mean of each row
 	df.fillna(df.mean(axis=0))
+
+	# fill with values directly above
 	df.fillna(method='ffill')
+
+	# fill with values directly below
 	df.fillna(method='bfill')
 ```
 
 ## Exploring Data
 
-- **Null value percentages**
+- **Getting a Random Sample of Dataset**
 
 ```
-	df.isna().sum() / df.count() * 100
+	# set the sampling random seed
+	np.random.seed(0)
+
+	# get your sample of x rows
+	df.sample(x)
+```
+
+- **Subsetting Dataset**
+
+```
+	# slicing by column name
+	df.loc[:, ['col1', 'col2']]
+	df.loc[:, 'col1':'col10']
+
+	# slicing by index
+	df.iloc[:, [0, 1]]
+	df.iloc[:, 0:9]
+```
+
+- **Null Value Percentages**
+
+```
+	# get the values per features
+	df.isna().sum() / df.shape[0] * 100
+
+	# get the values in overall
+	df.isna().sum().sum() / np.product(df.shape)	
 ```
 
 - **Showing all Rows with Null**
@@ -148,7 +190,7 @@
 	# always use parenthesis to avoid errors
 	condition = (df.col1.str.contains(' ') & (df.col2.isnull())
 	condition = (df.col1 == 'text') | (df.col2 != 'text')
-	df[condition]
+	df_new = df.loc[condition]
 ```
 
 - **Grouping Aggregates**
@@ -179,11 +221,31 @@
 	df.describe()
 ```
 
+## Exploring Visually
+
 - **Quick Plots**
 
 ```
 	df.plot. # press tab to see the list of options
 	df.plot.box()
+```
+
+- **Subplots Using Seaborn**
+
+```
+	import seaborn as sns
+
+	# use this to have one graph in 2 grid rows
+	fig, ax = plt.subplots(2, 1)
+
+	# use this to have two graphs in one grid row
+	fig, ax = plt.subplots(1, 2)
+
+	# rest of the code
+	ax[0].set_title('Plot1')
+	ax[1].set_title('Plot2')
+	sns.distplot(df.col1, ax=ax[0])
+	sns.distplot(df.col2, ax=ax[1])	
 ```
 
 ## Transforming Data
@@ -193,13 +255,33 @@
 - **Removing Outliers** 
 ## Scaling Methods
 
-- **Standard Scaler**
+- **Sklearn Scalers**
 
 ```
-	tran = preprocessing.StandardScaler().fit_transform(df)
-	tran = preprocessing.MinMaxScaler().fit_transform(df)
-	tran = preprocessing.MaxAbsScaler().fit_transform(df)
-	tran = preprocessing.Normalizer().fit_transform(df)
+	from sklearn import preprocessing as pre
+
+	tran = pre.StandardScaler().fit_transform(df)
+	tran = pre.MinMaxScaler().fit_transform(df)
+	tran = pre.MaxAbsScaler().fit_transform(df)
+	tran = pre.Normalizer().fit_transform(df)
+```
+
+- **Mlxtend Scalers**
+
+```
+	from mlxtend import preprocessing as pre
+
+	tran = pre.minmax_scaling(df.col1, columns = [0])
+```
+
+## Normalizing Methods
+
+- **Box-Cox Transformation**
+
+```
+	from scipy import stats
+
+	norm_data = stats.boxcox(df.col1) 
 ```
 
 ## Dimensionality Reduction
