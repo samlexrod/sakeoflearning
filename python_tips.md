@@ -62,6 +62,16 @@ Data Science Pipeline
 	df.time = pd.to_timedelta(df.time, errors='coerce')
 ```
 
+- **Formatting Values**
+
+```
+	# specific format
+	pd.to_datetime(df.date, format = "%m/%d/%y")
+
+	# inferring format if at least one is different
+	pd.to_datetime(df.date, infer_datetime_format=True)
+```
+
 - **Dropping Nulls**
 
 ```
@@ -248,6 +258,12 @@ Data Science Pipeline
 	sns.distplot(df.col2, ax=ax[1])	
 ```
 
+- **Gaussian Density Only w/ Adjusted Bins**
+
+```
+	sns.distplot(df.col1, kde=True, hist=False, bins=31
+```
+
 ## Transforming Data
 [http://http://pandas.pydata.org/pandas-docs/stable/merging.html](http://http://pandas.pydata.org/pandas-docs/stable/merging.html "Best to go here!")
 
@@ -281,7 +297,22 @@ Data Science Pipeline
 ```
 	from scipy import stats
 
-	norm_data = stats.boxcox(df.col1) 
+	norm_data = stats.boxcox(df.col1)[0]
+```
+
+## Encoding Methods
+
+- **Chardet for Identifying Encoding, not 100% Accurate**
+
+```
+	# read file to identify encoding
+	with open('folter/file.csv', 'rb') as rawdata:
+
+		# increase read size if results are inaccurate
+		result = chardet.detect(rawdata.read(10000))
+
+	# load data with identified encoding
+	data = pd.read_csv('folder/file.csv', encoding = result['encoding'])
 ```
 
 ## Dimensionality Reduction
