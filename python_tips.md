@@ -32,7 +32,9 @@ Data Science Pipeline
 ### Imports
 
 ```
-	from scipy.io import loadmat	# for MATLAB files
+	from scipy.io import loadmat			# for MATLAB files
+	from scipy import misc 					# for images
+	from scipy.io.wavfile import wavfile 	# for audio
 ```
 
 ### Data Load
@@ -40,14 +42,33 @@ Data Science Pipeline
 ```
 	mat = loadmat('folder/data.mat')
 	df = pd.read_csv('folder/data.csv', sep=',', index_col=0)
+	df = pd.read_sql_table('tablename', engine, columns=['col1', 'col2'])
+	df = pd.read_excel('folder/data.xlsx', 'Sheet1', na_values=['NA', '?'])
+	df = pd.read_json('folder/data.json', orient='columns')
+	df = pd.read_html('http://page.com/with/table.html')[0]
+	img = misc.imread('image.png')
+	sample_rate, audio_data = wavefile.read('sound.wav')
+```
+
+### Data Dump
+
+```
+	df.to_sql('table', engine)
+	df.to_excel('folder/data.xlsx')
+	df.to_jason('folder/data.json')
+	df.to_csv('folder/data.csf')
 ```
 
 ## Data Munging
 
-- **Lowering all Column Names**
+- **Altering Column Names**
 
 ```
+	# lowering column names
 	df.columns = df.columns.str.lower()
+
+	# changing column names
+	df.columns = ['col1', 'col2', 'col3']
 ```
 
 - **Coercing Values**
@@ -291,6 +312,27 @@ Data Science Pipeline
 	tran = pre.minmax_scaling(df.col1, columns = [0])
 ```
 
+- **Scaling Images**
+
+```
+	# resampling an image
+	img = img[::2, ::2]
+
+	# scaling colors to grayscale
+	X = (img / 255.0).reshape(-1)
+
+	# scaling colors preserved
+	X = (img / 255.0).reshape(-1, 3)
+
+	# looping in folder
+	import os
+	files = os.listdir('folder_name')
+	dset = []
+	for fname in files:
+		img = misc.imread(fname)
+		dset.append((img / 255.0).reshape(-1))
+```
+
 ## Normalizing Methods
 
 - **Box-Cox Transformation**
@@ -314,6 +356,30 @@ Data Science Pipeline
 
 	# load data with identified encoding
 	data = pd.read_csv('folder/file.csv', encoding = result['encoding'])
+```
+
+- **Encoding Features**
+
+```
+	# creates numbering by alphabetical categories
+	df = pd.col1.astype('category').cat.codes
+
+	# create new features of 1 and 0 encodings
+	df = pd.get_dummies(df, columns=['col1'])
+```
+
+## Bag of Words
+
+```
+	from sklearn.feature_extrction.text import CountVectorizer
+
+	bow = CountVectorizer()
+	
+	X = bow.fit_transform(textdata)
+
+	bow.get_feature_names()
+
+	X.toarray()
 ```
 
 ## Dimensionality Reduction
