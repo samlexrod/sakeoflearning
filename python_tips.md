@@ -253,6 +253,12 @@ Data Science Pipeline
 	df.describe()
 ```
 
+- **Wildcard**
+
+```
+	df[df.col1.str.find('str') >= 0]
+```
+
 ## Exploring Visually
 
 - **Quick Plots**
@@ -291,6 +297,13 @@ Data Science Pipeline
 
 
 - **Removing Outliers** 
+
+
+- **SQL Union**
+
+```
+	df = df.append(df2)
+```
 ## Scaling Methods
 
 - **Sklearn Scalers**
