@@ -131,6 +131,16 @@ Data Science Pipeline
 	df = df.iloc[:, :-2]
 ```
 
+- **Drop Duplicates**
+
+```
+	# using all features
+	df.drop_duplicates()
+
+	# using only a subset of features
+	df.drop_duplicates(subset=['col1', 'col2'])
+```
+
 - **Reset Index***
 
 ```
@@ -155,6 +165,19 @@ Data Science Pipeline
 
 	# fill with values directly below
 	df.fillna(method='bfill')
+
+	# fill value limits
+	df.fillna(value=0, limit=3)
+
+	# fill interpolating with non-nans
+	df.interpolate(method='polynomial', order=2)
+```
+
+- **Replacing Non-numeric Values**
+
+```
+	import re
+	df.col1.apply(lambda x: re.sub('[^0-9]', '', str(x))
 ```
 
 ## Exploring Data
@@ -239,6 +262,16 @@ Data Science Pipeline
 
 	# aggregate and select one column
 	df.groupby(['col1'])[['col2']].sum()
+```
+
+- **Unique Values**
+
+```
+	# listing unique values
+	df.col1.unique()
+
+	# counting unique values
+	df.col1.value_counts()	
 ```
 
 - **Investigating Data Types**
@@ -357,6 +390,16 @@ Data Science Pipeline
 ```
 
 ## Encoding Methods
+
+- **Character Encoding/Decoding**
+
+```
+	# encoding
+	x.encode('utf-8', errors = "replace")
+
+	# decoding
+	x.decode('utf-8')
+```
 
 - **Chardet for Identifying Encoding, not 100% Accurate**
 
