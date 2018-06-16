@@ -12,6 +12,8 @@ Focus: Data-Driven Quesitons <- Best place to start the process
   - Have a data driven question to guide you.
   - Know the types of questions and problems solvable with machine learning.
   - Collect as much data as you possibly can, focusing on samples.
+  - Collect features, even if they do not make impact individually.
+  - Use intuition and expertise in the domain to drive you to the right features.
   - We need to pay special care on this step, so we can collect enough data to provide effectiveness.
 - **Wrangling Data** to make it more reliable
 - **Exploring Data** using statistics and visualizations

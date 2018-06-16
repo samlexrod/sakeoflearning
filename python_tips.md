@@ -11,6 +11,9 @@ Data Science Pipeline
 	5. Predicting Modeling
 	6. Reporting
 
+
+*Get help by adding a ? at the end of the method in question.
+
 ## Timing Processes
 
 ```
@@ -69,6 +72,12 @@ Data Science Pipeline
 
 	# changing column names
 	df.columns = ['col1', 'col2', 'col3']
+
+	# replacing characters using lambda
+	df.columns = pd.Series(df.columns).apply(lamba x: x.replace('-', '_'))
+
+	# replacing characters using inline function
+	df.columns = [x.replace('-', '_') for x in df.columns]
 ```
 
 - **Coercing Values**
@@ -81,7 +90,14 @@ Data Science Pipeline
 	df.date = pd.to_datetime(df.date, errors='coerce')
 
 	# coercing to time
-	df.time = pd.to_timedelta(df.time, errors='coerce')
+	df.time = pd.to_timedelta(df.time, errors='coerce') 
+```
+
+- **Whole Dataframe to Numeric Ignoring Errors**
+
+```
+	for header in df.columns:
+		df[header] = pd.to_numeric(df[header], errors='ignore')
 ```
 
 - **Formatting Values**
@@ -111,8 +127,9 @@ Data Science Pipeline
 ```
 	# get the row indexes
 	drop_this = df[df.col1.isnull()].index
+	drop_this = df[df.col1 == 'this'].index
 
-	# drop the stated indexes
+	# drop the stated indexes, axis=0 is defualt
 	df.drop(drop_this, inplace=True)
 
 	# you migh want to reset index by using df.reset_index
@@ -141,7 +158,7 @@ Data Science Pipeline
 	df.drop_duplicates(subset=['col1', 'col2'])
 ```
 
-- **Reset Index***
+- **Reset Index**
 
 ```
 	# shows the old index and new without committing
@@ -180,7 +197,27 @@ Data Science Pipeline
 	df.col1.apply(lambda x: re.sub('[^0-9]', '', str(x))
 ```
 
+- **Drop Non-numeric Columns**
+
+```
+	df.drop(df.columns[df.dtypes == object], axis=1, inplace=True)
+```
+
 ## Exploring Data
+
+- **Show Only Columns with Object Values**
+
+> This is useful to investigate why values did not automatically converted to numeric.
+
+```
+	df.loc[:, df.dtypes==object]
+```
+
+- **Comparing Variances**
+
+```
+	(df.std()*2).sort_values(ascending=False)
+```
 
 - **Getting a Random Sample of Dataset**
 
@@ -272,6 +309,9 @@ Data Science Pipeline
 
 	# counting unique values
 	df.col1.value_counts()	
+
+	# counting count of unique values
+	df.col1.value_counts().count()
 ```
 
 - **Investigating Data Types**
@@ -294,12 +334,94 @@ Data Science Pipeline
 
 ## Exploring Visually
 
+- **Making Matplotlib look Pretty**
+
+```
+	matplotlib.style.use('ggplot')
+```
+
+- **Using colormaps**
+
+```
+	import matplotlib.pyplot as plt
+
+	plt.cm. # press tab to see selections
+```
+
+### Pandas Dataframe Visuals
+
 - **Quick Plots**
 
 ```
 	df.plot. # press tab to see the list of options
+
+	# wisker plot
 	df.plot.box()
+
+	# histogram with transparency and customized bins
+	df.col1.plot.hist(alpha=0.4, bins=3)
+
+	# scatterplot
+	df.plot.scatter(x='col1', y='col2')
 ```
+
+### Matplotlib & Tools
+
+- **3d Plots**
+
+```
+	import matplotlib.pyplot as plt
+	from mpl_toolkits.mplot3d import Axes3D
+	%matplotlib notebook
+
+	fig = plt.figure()
+	ax = fig.add_subplot(111, projection='3d')
+	ax.set_xlabel(df.col1.name)
+	ax.set_ylabel(df.col2.name)
+	ax.set_zlabel(df.col3.name)
+	
+	ax.scatter(df.col1, df.col2, df.col3, c='r', marker='.')
+	plt.show()
+```
+
+- **Parallel Coordinates**
+
+```
+	import matplotlib.pyplot as plt
+	from pandas.tools.plotting import parallel_coordinates
+	
+	plt.figure()
+	parallel_coordinates(df, 'target_names')
+	plt.show()	
+```
+
+- **Andrew's Curves**
+
+```
+	import matplotlib.pyplot as plt
+	from pandas.tools.plotting import andrews_curves
+
+	plt.figure()
+	andrews_curves(df, 'target_names')
+	plt.show()
+```
+
+- **IM Show**
+
+```
+	import matplotlib.pyplot as plt
+	
+	plt.imshow(df.cor(), cmap=plt.cm.Blues, interpolation='nearest')
+	plt.colorbars()
+	tick_marks = [i for i in range(len(df.columns))]
+	tick_marks = [i for i, c in enumerate(df.columns)] # use either or
+	plt.xticks(tick_marks, df.columns, rotation='vertical')
+	plt.yticks(tick_marks, df.columns)
+
+	plt.show()
+```
+
+### Seaborn
 
 - **Subplots Using Seaborn**
 
@@ -418,7 +540,12 @@ Data Science Pipeline
 
 ```
 	# creates numbering by alphabetical categories
-	df = pd.col1.astype('category').cat.codes
+	# prefered for Nominal features
+	df['col1_ec'] = df.col1.astype('category').cat.codes
+
+	# prefered for Ordinal features
+	ordered_features = ['ord1', 'ord2', 'ord3']
+	df['col1_ec'] = df.col1.astype('category', ordered=True, categories=ordered_features).cat.codes
 
 	# create new features of 1 and 0 encodings
 	df = pd.get_dummies(df, columns=['col1'])
@@ -527,8 +654,8 @@ Data Science Pipeline
 	iso = Isomap(n_components=3, n_neighbors=8)
 	iso.fit(df)
 	tran = iso.transform(df)
-	tran =  pd.DataFrame(tran)
-	tran.columns = ['comp1', 'comp2', 'comp3']
+	df =  pd.DataFrame(tran)
+	df.columns = ['comp1', 'comp2', 'comp3']
 ```
 
 - Plotting Isomap 2D
