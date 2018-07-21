@@ -14,13 +14,47 @@ Data Science Pipeline
 
 *Get help by adding a ? at the end of the method in question.
 
+## Basics
+
+### Commenting in Python
+```
+	#this is a comment
+	"""this is 
+	a multiline comment"""
+	variable = """you can set a multiline 
+	comment as a variable"""
+```
+
+### Conditional Steatements
+```
+	"""
+	== equals
+	> greater than
+	>= greater than or equal to
+	< less than
+	<= less than or equal to
+	<> not equal
+	!= not equal
+	"""
+
+	# this is a conditional statement
+	if 1 = 1:
+		print("One indeed equal to one")
+	elif 1 = 2:
+		print("One does not equal to two, but will not run because the first one will")
+	else:
+		print("Will not run on this condition")
+```
+
+
+### Functions
+
 ## Timing Processes
 
 ```
 	%time 	# time in seconds
 	%timeit # mean and stdev per loop
 ```
-
 
 ## Loading and Dumping Data
 
