@@ -51,10 +51,10 @@ Data Science Pipeline
 ```
 	# creating the function
 	def functionName(parameter1):
-		print(parameter1)
+		return parameter1
 
 	# calling the funciton
-	functionName("The console will print this!")
+	print(functionName("The console will print this!"))
 ```
 
 ### Methods
