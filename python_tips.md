@@ -98,7 +98,7 @@ Data Science Pipeline
 	print("The percentage is {:%}".format(.12))
 ```
 
-*********************************END BASIC********************************************
+END BASIC***
 
 # Advanced
 
