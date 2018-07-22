@@ -14,9 +14,9 @@ Data Science Pipeline
 
 *Get help by adding a ? at the end of the method in question.
 
-## Basics
+# Basics
 
-### Commenting in Python
+## Commenting in Python
 ```
 	#this is a comment
 	"""this is 
@@ -25,7 +25,7 @@ Data Science Pipeline
 	comment as a variable"""
 ```
 
-### Conditional Steatements
+## Conditional Steatements
 ```
 	"""
 	== equals
@@ -47,7 +47,7 @@ Data Science Pipeline
 ```
 
 
-### Functions
+## Functions
 ```
 	# creating the function
 	def functionName(parameter1):
@@ -57,9 +57,9 @@ Data Science Pipeline
 	print(functionName("The console will print this!"))
 ```
 
-### Methods
+## Methods
 
-#### Using the format object
+### Using the format object
 ```
 	# basic formatting
 
@@ -97,6 +97,10 @@ Data Science Pipeline
 	# it shows 12%
 	print("The percentage is {:%}".format(.12))
 ```
+
+*********************************END BASIC********************************************
+
+# Advanced
 
 ## Timing Processes
 
