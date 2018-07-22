@@ -59,7 +59,7 @@ Data Science Pipeline
 
 ## Methods
 
-### Using the format object
+### .format()
 ```
 	# basic formatting
 
@@ -98,7 +98,24 @@ Data Science Pipeline
 	print("The percentage is {:%}".format(.12))
 ```
 
-**END BASIC**
+### type()
+```
+	type(1)    # prints int
+	type("1")  # prints str
+	type(1.1)  # prints float
+	type(True) # bool
+```
+
+### int(), float(), str(), bool()
+```
+	# these are explicit conversion methods
+	int("1") 	 # prints an int
+	float("1.1") # prints a float
+	bool(1) 	 # prints True
+
+```
+
+**END BASICS**
 ---
 ---
 
