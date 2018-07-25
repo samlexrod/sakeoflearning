@@ -135,11 +135,18 @@ Data Science Pipeline
 	x = 10
 	listDiffTypes = ["1", 2, 3.0, False, x]
 
-	# slicing lists
-	listDiffTypes[0:1]
+	# slicing python lists
+	listDiffTypes[start:end]	
+	listDiffTypes[0:2] 
+	"""the slicing above 
+	will print index 0 and 1"""
 
 	# lists of list
 	listOfList = [["item1", 23.39], ["item2", 32.39]]
+
+	# indexing matrix
+	matrix = [[1, 2], [3, 4]]
+	matrix[-1][0] # <- gets 3
 ```
 
 ### Dictionaries
