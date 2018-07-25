@@ -1,3 +1,3 @@
-x = ["this" + "is", 1, True, "list"]
+import numpy
+print(numpy.show_config())
 
-print(x)

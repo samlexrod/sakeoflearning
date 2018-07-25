@@ -218,6 +218,26 @@ Data Science Pipeline
 
 # Advanced
 
+## Version Check
+```
+	import numpy
+	numpy.version.version
+	numpy.__version__
+```
+
+## django
+```
+	# installing django using Anaconda Distribution
+	# type the desired version after the double equal signs
+	conda install django==2.0.2
+
+	# starting project
+	django-admin startproject projectname
+
+	# deploying django
+	python manage.py runserver
+```
+
 ## Timing Processes
 
 ```
