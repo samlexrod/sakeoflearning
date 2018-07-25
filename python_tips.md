@@ -231,8 +231,23 @@ Data Science Pipeline
 	# type the desired version after the double equal signs
 	conda install django==2.0.2
 
-	# starting project
+	# creating project
 	django-admin startproject projectname
+
+	# add application to project
+	python manage.py startapp appname
+
+	# creating migration
+	python manage.py makemigrations
+
+	# migrate a database
+	python manage.py migrate
+
+	# create superuser
+	python manage.py createsuperuser
+
+	# collecting static files into one folder
+	python manage.py collectstatic
 
 	# deploying django
 	python manage.py runserver
