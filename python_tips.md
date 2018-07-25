@@ -115,6 +115,103 @@ Data Science Pipeline
 
 ```
 
+## Handling Lists and Dictionaries
+
+### Lists
+```
+	# declaring list
+	listName = []
+
+	# inserting to list
+	listName.insert(0, "item2")
+
+	# updating list
+	listName[0] = "item1"
+
+	# delete from list
+	del(listName[0])
+
+	# list with different types
+	x = 10
+	listDiffTypes = ["1", 2, 3.0, False, x]
+
+	# slicing lists
+	listDiffTypes[0:1]
+
+	# lists of list
+	listOfList = [["item1", 23.39], ["item2", 32.39]]
+```
+
+### Dictionaries
+```
+	# declaring dictionary
+	dicName = {}
+
+	# inserting to dictionary
+
+	# updating dictionary
+	dictName["keyname"] = "newkeyname"
+
+	# accessing key values
+	dicName["keyname"]
+
+```
+
+### Classes
+```
+	# declaring a class
+	class className:
+		
+		# creating class properties
+		propName = "prop created"
+
+		# set instance variables
+		def __init__(self, var1="", var2=""):
+			self.var1 = var1
+			self.var2 = var2
+
+		# declaring methods
+		def methodName(self, parameter1):
+			print("print method" + str(parameter1))
+
+	# assigning an object
+	callClass = className()
+
+	# calling the methods
+	callClass.MethodName()
+
+	# other way to create class properties
+	callClass.propName = "prop created"
+
+	# update class property
+	callClass.propName = "new prop name"
+```
+
+## Loops
+
+### For Loop
+```
+	# print all items
+	for item in listName:
+		print(item)
+
+	# print all items by index
+	from i in range(1, len(listName)):
+		print(listName[i])
+
+	# print ranges from 1 to 9
+	fro i in range(1, 10):
+		print(i)
+```
+
+### While Loop
+```
+	condition = 0
+	while condition < 18:
+		print(condition)
+		condition += 1
+```
+
 **END BASICS**
 ---
 ---
