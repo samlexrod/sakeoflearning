@@ -147,6 +147,34 @@ Data Science Pipeline
 	# indexing matrix
 	matrix = [[1, 2], [3, 4]]
 	matrix[-1][0] # <- gets 3
+
+	# changing list elements
+	list = ['one', 1, 'two', 2]
+	list[0:2] = ['three', 3]
+
+	# adding to list
+	list = ['one', 1, 'two', 2]
+	list = list + ['three', 3]
+
+	# referencing to same location in memory
+	x = [1, 2]
+	y = x
+	y[0] = 2
+
+	"""x at index 0 now will be
+	2 since now y and x are referencing 
+	to the same location in memory 
+	and the reference is the same""" 
+
+	# explicitly changing list
+	x = [1, 2]
+	y = list(x) # option 1
+	y = x[:]    # option 2
+
+	"""y now points to a differet location
+	in memory and therefore a change will
+	not affect x"""
+
 ```
 
 ### Dictionaries
