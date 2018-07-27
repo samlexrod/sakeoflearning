@@ -25,6 +25,13 @@ Data Science Pipeline
 	comment as a variable"""
 ```
 
+## Help
+```
+	# will output information about the function
+	help(min)
+	?min
+```
+
 ## Conditional Steatements
 ```
 	"""
@@ -174,6 +181,9 @@ Data Science Pipeline
 	"""y now points to a differet location
 	in memory and therefore a change will
 	not affect x"""
+
+	# sorting list on decending order
+	sorted_list = sorted(list, reverse=True)
 
 ```
 
