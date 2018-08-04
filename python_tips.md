@@ -12,6 +12,12 @@ Data Science Pipeline
 	6. Reporting
 
 
+Special Notes about Python:
+1. In python everything is an Object!
+2. Some method calls don't change the object they are called on.
+3. A method is a function inside of a class.
+
+
 *Get help by adding a ? at the end of the method in question.
 
 # Basics
@@ -64,6 +70,31 @@ Data Science Pipeline
 	print(functionName("The console will print this!"))
 ```
 
+## Built-in Functions
+
+### type()
+```
+	type(1)    # prints int
+	type("1")  # prints str
+	type(1.1)  # prints float
+	type(True) # bool
+```
+
+### int(), float(), str(), bool()
+```
+	# these are explicit conversion methods
+	int("1") 	 # prints an int
+	float("1.1") # prints a float
+	bool(1) 	 # prints True
+
+```
+
+### Sorted()
+```
+	# Sort a list in accending order
+	Sorted(list, reverse=True)
+```
+
 ## Methods
 
 ### .format()
@@ -105,21 +136,65 @@ Data Science Pipeline
 	print("The percentage is {:%}".format(.12))
 ```
 
-### type()
+### .index()
 ```
-	type(1)    # prints int
-	type("1")  # prints str
-	type(1.1)  # prints float
-	type(True) # bool
+	# Finding index in list
+	list = [1, 2, 'three', 2]
+	list.index('three') # returns 2
+
+	# Finding index in string
+	name = 'samuel'
+	name.index('s') # returns 0
 ```
 
-### int(), float(), str(), bool()
+### .count()
 ```
-	# these are explicit conversion methods
-	int("1") 	 # prints an int
-	float("1.1") # prints a float
-	bool(1) 	 # prints True
+	# Counting items
+	list = [1, 2, 'three', 2]
+	list.count(2) # returns 2
+```
 
+### .upper(), .lower(), .capitalize()
+```
+	# Convert a word to all caps
+	name = 'samuel'
+	name.upper() # returns SAMUEL
+
+	# convert a word to all lower
+	name = 'SAMUEL'
+	name.lower() # returns samuel
+
+	# Capitalize a word
+	name = 'samuel'
+	name.capitalize() # returns Samuel
+```
+
+### .replace()
+```
+	# Replace characters or words on strings
+	name = 'samuel'
+	name.replace('s', 'm') # returns manuel
+```
+
+### .append() = x = not needed
+```
+	# adding to the end of a list
+	list = [1, 2, 'three', 2]
+	list.append(2) # returns [1, 2, 'three', 2, 2]
+```
+
+### .reverse() = x = not needed
+```
+	# sort values in decending order
+	list = [3, 2, 1]
+	list.reverse()
+```
+
+### .split()
+```
+	# split a string into a list
+	string = 'sammy is awesome!'
+	list = string.split(' ')
 ```
 
 ## Handling Lists and Dictionaries
@@ -184,7 +259,13 @@ Data Science Pipeline
 
 	# sorting list on decending order
 	sorted_list = sorted(list, reverse=True)
+```
 
+#### .append() x = not needed
+```
+	# add values to a list
+	list = [1, 2]
+	list.append(3)
 ```
 
 ### Dictionaries
@@ -258,6 +339,25 @@ Data Science Pipeline
 ```
 
 **END BASICS**
+---
+---
+
+# Intermediate
+
+## The beaty of Pandas
+
+
+### .DataFrame
+
+#### .from_dict()
+```
+	# convert a dictionary to dataframe
+	egdict = {'column1': [1, 2], 'column2': [3, 4]}
+	df = pandas.DataFrame.from_dict(egdict, orient='column')
+```
+
+
+**END INTERMEDIATE**
 ---
 ---
 
