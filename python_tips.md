@@ -476,104 +476,6 @@ Special Notes about Python:
 	numpy.version.version
 	numpy.__version__
 ```
-
-## django
-```
-	# installing django using Anaconda Distribution
-	# type the desired version after the double equal signs
-	conda install django==2.0.2
-
-	# creating project
-	django-admin startproject projectname
-
-	# add application to project
-	python manage.py startapp appname
-
-	# creating migration
-	python manage.py makemigrations
-
-	# migrate a database
-	python manage.py migrate
-
-	# create superuser
-	python manage.py createsuperuser
-
-	# collecting static files into one folder
-	python manage.py collectstatic
-
-	# deploying django
-	python manage.py runserver
-```
-
-### writing code in HTML
-
-#### create views
-```
-	# these are the request to the pages
-	# you can write your code here
-	# create functions
-	def home(request)
-		return render(request, 'home.html')
-	
-	def target_here1(request):
-		pass # write code here
-
-	def target_here2(request):
-		pass # write code here
-```
-
-#### create the urlpatterns
-```
-	# from . import views
-
-	# for the links to work you must create paths
-	urlpatterns = [
-		path('', views.home, name='home'),
-		path('count/', views.count, name='target_here1'),
-		path('about/', views.about, name='target_here2')
-	]
-```
-
-#### a tag references to pages
-```
-	# Send to target on a hyperlink
-	<a href='{% url 'target_here' %}'></a>
-```
-
-#### getting references
-```
-	# in the html script
-	# example of an html form
-	<form action="{% url 'target_here2' %}">
-		<textarea cols="40" rows="5" name="fulltext"></textarea>
-		<br/>
-		<input type="submit" value="Count!"/>
-	</form>
-
-	# inside the views.py
-	# assigning the fulltext into variable
-	fulltext = request.GET['fulltext']
-
-	# write your python code in the view
-```
-
-#### for loop
-```
-	# for loop on list
-	{% for item in list %}
-	{{ item }}
-	{% endfor %}
-
-	# for loop on dictionary
-	{% for key, value in thisdict %}
-	{{ key }}
-	<br/>
-	{{ value }}
-	<br/>
-	<% endfor %>
-
-```
-
 ## Timing Processes
 
 ```
@@ -1300,4 +1202,125 @@ Special Notes about Python:
 	
 	# plotting
 	ax.scatter(df_t.col1, df_t.col2, c=c_color, marker='o', alpha=0.2)	
+```
+
+# Other
+
+## django
+```
+	# installing django using Anaconda Distribution
+	# type the desired version after the double equal signs
+	conda install django==2.0.2
+
+	# creating project
+	django-admin startproject projectname
+
+	# add application to project
+	python manage.py startapp appname
+
+	# creating migration
+	python manage.py makemigrations
+
+	# migrate a database
+	python manage.py migrate
+
+	# create superuser
+	python manage.py createsuperuser
+
+	# collecting static files into one folder
+	python manage.py collectstatic
+
+	# deploying django
+	python manage.py runserver
+```
+
+### writing code in HTML
+
+#### create views
+```
+	# these are the request to the pages
+	# you can write your code here
+	# create functions
+	def home(request)
+		return render(request, 'home.html')
+	
+	def target_here1(request):
+		pass # write code here
+
+	def target_here2(request):
+		pass # write code here
+```
+
+#### create the urlpatterns
+```
+	# from . import views
+
+	# for the links to work you must create paths
+	urlpatterns = [
+		path('', views.home, name='home'),
+		path('count/', views.count, name='target_here1'),
+		path('about/', views.about, name='target_here2')
+	]
+```
+
+#### a tag references to pages
+```
+	# Send to target on a hyperlink
+	<a href='{% url 'target_here' %}'></a>
+```
+
+#### getting references
+```
+	# in the html script
+	# example of an html form
+	<form action="{% url 'target_here2' %}">
+		<textarea cols="40" rows="5" name="fulltext"></textarea>
+		<br/>
+		<input type="submit" value="Count!"/>
+	</form>
+
+	# inside the views.py
+	# assigning the fulltext into variable
+	fulltext = request.GET['fulltext']
+
+	# write your python code in the view
+```
+
+#### for loop
+```
+	# for loop on list
+	{% for item in list %}
+	{{ item }}
+	{% endfor %}
+
+	# for loop on dictionary
+	{% for key, value in thisdict %}
+	{{ key }}
+	<br/>
+	{{ value }}
+	<br/>
+	<% endfor %>
+
+```
+
+## Anaconda Prompt
+
+### Enviroments
+https://conda.io/docs/user-guide/tasks/manage-environments.html
+
+```
+	# create environment
+	conda create --name myenv
+
+	# activate environment
+	conda activate myenv
+
+	# deactivate environment
+	deactivate
+
+	# see the list on environments
+	conda env list
+
+	# removing environment
+	conda remove --name myenv --all
 ```
