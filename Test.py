@@ -1,5 +1,8 @@
-# add values to a list
-list = [1, 2]
-list.append(3)
+import numpy as np
+np_2d_array = np.array([[1, 2], [3, 4]])
 
-print(list)
+print(np_2d_array[:, 0])
+
+conversion = np.array([10, 100])
+
+print(np_2d_array * conversion)

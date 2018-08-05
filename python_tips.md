@@ -91,8 +91,12 @@ Special Notes about Python:
 
 ### Sorted()
 ```
-	# Sort a list in accending order
-	Sorted(list, reverse=True)
+	# Sort a list in descending order
+	sorted(yourlist, reverse=True)
+
+	# Sorting a dictionary in descending order
+	# set itemgetter to 1 to order by value, 0 to order by key
+	sorted(yourdict.items(), key=operator.itemgetter(1), reverse=True)
 ```
 
 ## Methods
@@ -344,6 +348,102 @@ Special Notes about Python:
 
 # Intermediate
 
+## Numpy
+> Python does not know how to do calculations on list. With Numpy, you can do calculations on lists, which are arrays in Numpy, since you can calculate over entire arrays.
+```
+	# importing numpy standard
+	import numpy as np
+```
+
+### Numpy Array
+> Numpy arrays can only contain one type of data in contrary to a python list. If there is a mix of data types being converted to Numpy array, all values will be converted to string. Boolean values will be converted to the respective boolean integers, 0 or 1. Unlike a list where + adds to the list, a numpy array will do an addition of the arrays. Given that a Numpy array holds only one datatype, it can calculate way faster than going over a python list.
+
+#### Numpy Array Methods
+
+##### .shape
+```
+	# returns the structure of the array in tuple
+	np_array = np.array([[1, 2, 3], [1, 2, 3]])
+
+	In [1]: np_array.shape
+	Out[1]: (2, 5)
+```
+
+#### Data types rules
+```
+	# implicit conversion to string
+	list = [1, 'one']
+
+	## this returns a numpy array of strings (['1', 'one'], dtype='<U32')
+	impl_conversion = np.array(list)
+
+	# implict conversion of boolean
+	list = [1, True]
+
+	## this returns a numpy array of integers ([1, 1])
+	impl_conversion = np.array(list)
+```
+
+#### Calculations
+```
+	# lists
+	list1 = [1, 2, 3]
+	list2 = [10, 20, 30]
+
+	# creating numpy arrays
+	np_list1 = np.array(list1)
+	np_list2 = np.array(list2)
+
+	# this returns a numpy array ([10, 40, 90])
+	np_multiplication = np_list1 * np_list2
+
+	# this returns a numpy array ([11, 22, 33])
+	np_addition = np_list1 + np_list2
+
+	# this returns a numpy array ([2, 4, 6])
+	np_multiplcation = np_list1 * 2
+```
+
+#### Boolean array
+```
+	# np list
+	np_list = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+	# values greater than argumet
+	greater_than_five = np_list > 5
+
+	# subseting only values that meet condition
+	np_list[greater_than_five]
+```
+
+#### 2d Arrays
+```
+	# the idea
+	np_array[rows][columns]
+	np_array[rows, columns]
+
+	# creating 2d array
+	# 1 and 3 are in column1
+	# 2 and 4 are in column2
+	np_2d_array = np.array([[1, 2], [3, 4]])
+
+	# subsetting 2d array
+	In [1]: np_2d_array[0][1]
+	Out[1]: 2
+
+	In [2]: np_2d_array[0, 1]
+	Out[2]: 2
+
+	In [3]: np_2d_array[0, :]
+	Out[3]: array([1, 2])
+
+	# mutiplication by column and array
+	In [4]: np_2d_array * np.array([10, 100])
+	Out[4]: array([[10, 200], [30, 400]])
+
+```
+
+
 ## The beaty of Pandas
 
 
@@ -354,7 +454,14 @@ Special Notes about Python:
 	# convert a dictionary to dataframe
 	egdict = {'column1': [1, 2], 'column2': [3, 4]}
 	df = pandas.DataFrame.from_dict(egdict, orient='column')
+
+	# pivot column to rows and rename pivoted columns
+	egdict = {'column1': [1, 2], 'column2': [3, 4]}
+	df = pandas.DataFrame.from_dict(egdict, orient='index',
+									columns=['rowtocol1', 'rowtocol2'])
 ```
+
+#### .
 
 
 **END INTERMEDIATE**
@@ -396,6 +503,75 @@ Special Notes about Python:
 
 	# deploying django
 	python manage.py runserver
+```
+
+### writing code in HTML
+
+#### create views
+```
+	# these are the request to the pages
+	# you can write your code here
+	# create functions
+	def home(request)
+		return render(request, 'home.html')
+	
+	def target_here1(request):
+		pass # write code here
+
+	def target_here2(request):
+		pass # write code here
+```
+
+#### create the urlpatterns
+```
+	# from . import views
+
+	# for the links to work you must create paths
+	urlpatterns = [
+		path('', views.home, name='home'),
+		path('count/', views.count, name='target_here1'),
+		path('about/', views.about, name='target_here2')
+	]
+```
+
+#### a tag references to pages
+```
+	# Send to target on a hyperlink
+	<a href='{% url 'target_here' %}'></a>
+```
+
+#### getting references
+```
+	# in the html script
+	# example of an html form
+	<form action="{% url 'target_here2' %}">
+		<textarea cols="40" rows="5" name="fulltext"></textarea>
+		<br/>
+		<input type="submit" value="Count!"/>
+	</form>
+
+	# inside the views.py
+	# assigning the fulltext into variable
+	fulltext = request.GET['fulltext']
+
+	# write your python code in the view
+```
+
+#### for loop
+```
+	# for loop on list
+	{% for item in list %}
+	{{ item }}
+	{% endfor %}
+
+	# for loop on dictionary
+	{% for key, value in thisdict %}
+	{{ key }}
+	<br/>
+	{{ value }}
+	<br/>
+	<% endfor %>
+
 ```
 
 ## Timing Processes
