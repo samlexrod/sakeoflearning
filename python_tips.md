@@ -2,7 +2,7 @@
 
 > Here you will find a repository of data mining approaches. These approaches will be updated as I found new and improved ways to solve an issue. Please feel free to do a push request if you find a better way of approaching a problem. Thank you for visiting my repository!
 
-Data Science Pipeline
+Data Science Pipeline:
 
 	1. Data Collection
 	2. Data Definition
@@ -13,9 +13,10 @@ Data Science Pipeline
 
 
 Special Notes about Python:
-1. In python everything is an Object!
-2. Some method calls don't change the object they are called on.
-3. A method is a function inside of a class.
+
+	1. In python everything is an Object!
+	2. Some method calls don't change the object they are called on.
+	3. A method is a function inside of a class.
 
 
 *Get help by adding a ? at the end of the method in question.
@@ -99,7 +100,7 @@ Special Notes about Python:
 	sorted(yourdict.items(), key=operator.itemgetter(1), reverse=True)
 ```
 
-## Methods
+## Python General Methods
 
 ### .format()
 ```
@@ -201,15 +202,12 @@ Special Notes about Python:
 	list = string.split(' ')
 ```
 
-## Handling Lists and Dictionaries
+## Lists
 
-### Lists
+### Declaring, Indexing, Slicing
 ```
 	# declaring list
 	listName = []
-
-	# inserting to list
-	listName.insert(0, "item2")
 
 	# updating list
 	listName[0] = "item1"
@@ -265,14 +263,24 @@ Special Notes about Python:
 	sorted_list = sorted(list, reverse=True)
 ```
 
-#### .append() x = not needed
+### List Methods
+
+#### .insert()
+> Assignment to variable is not needed.
+```
+	# inserting to list
+	listName.insert(0, "item2")
+```
+
+#### .append() 
+> Assignment to variable is not needed.
 ```
 	# add values to a list
 	list = [1, 2]
 	list.append(3)
 ```
 
-### Dictionaries
+## Dictionaries
 ```
 	# declaring dictionary
 	dicName = {}
@@ -284,10 +292,9 @@ Special Notes about Python:
 
 	# accessing key values
 	dicName["keyname"]
-
 ```
 
-### Classes
+## Classes
 ```
 	# declaring a class
 	class className:
@@ -355,7 +362,50 @@ Special Notes about Python:
 	import numpy as np
 ```
 
-### Numpy Array
+### Generate Data
+```
+	# generate 5000 samples
+
+	sample_size = 5000
+	mean = np_array.mean()
+	std = np_array.std()
+
+	np.random.normal(mean, std, sample_size)
+```
+
+### Methods
+
+#### Stacking arrays into columns
+```
+	# stacking two arrays
+	np.column_stack(np_array1, np_array2)
+
+	# both arrays must be of the same size
+```
+
+#### Central Tendency and Variability
+
+##### .mean(), .median(), .mode(), .std()
+```
+	# mean of column one
+	np_array = np.array([1, 2, 3], [10, 20, 30])
+
+	# uses 1 and 10, which are in the same column
+	In [1]: np.mean(np_array[:, 0])
+	Out[1]: 5.5
+
+	# follow the same concept for the other methods
+```
+
+#### Measures of Relliability
+
+##### .corrcoef()
+```
+	# correlation between two variables (columns)
+	np.corrcoef(np_array[:, 0], np_array[:, 0])
+```
+
+### Arrays
 > Numpy arrays can only contain one type of data in contrary to a python list. If there is a mix of data types being converted to Numpy array, all values will be converted to string. Boolean values will be converted to the respective boolean integers, 0 or 1. Unlike a list where + adds to the list, a numpy array will do an addition of the arrays. Given that a Numpy array holds only one datatype, it can calculate way faster than going over a python list.
 
 #### Numpy Array Methods

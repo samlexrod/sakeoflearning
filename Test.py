@@ -1,8 +1,9 @@
 import numpy as np
-np_2d_array = np.array([[1, 2], [3, 4]])
 
-print(np_2d_array[:, 0])
+height = np.round(np.random.normal(1.75, .20, 5000), 2)
 
-conversion = np.array([10, 100])
+weight = np.round(np.random.normal(60.3, 16, 5001), 2)
 
-print(np_2d_array * conversion)
+np_stack = np.column_stack((height, weight))
+
+print(np_stack)
