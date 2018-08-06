@@ -1284,6 +1284,18 @@ Special Notes about Python:
 	python manage.py runserver
 ```
 
+### .gitignore
+```
+	# get the default gitignore files
+	1. Go to gitignore.io
+	2. In the search bar, type django
+	3. Copy the code
+
+	# ignore sensitive commits
+	1. Create a new file and name it .gitignore
+	2. In the file, paste the code found in gitignore.io
+```
+
 ### writing code in HTML
 
 #### create views
