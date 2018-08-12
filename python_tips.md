@@ -60,7 +60,6 @@ Special Notes about Python:
 		print("Will not run on this condition")
 ```
 
-
 ## Functions
 ```
 	# creating the function
@@ -200,6 +199,88 @@ Special Notes about Python:
 	# split a string into a list
 	string = 'sammy is awesome!'
 	list = string.split(' ')
+```
+
+### .strftime()
+
+```
+	# example
+	from datetime import datetime
+	time_now = datetime.now().strftime('%Y-%m-%d')
+
+
+Directive:
+
+	%a - abbreviated weekday name
+
+	%A - full weekday name
+
+	%b - abbreviated month name
+
+	%B - full month name
+
+	%c - preferred date and time representation
+
+	%C - century number (the year divided by 100, range 00 to 99)
+
+	%d - day of the month (01 to 31)
+
+	%D - same as %m/%d/%y
+
+	%e - day of the month (1 to 31)
+
+	%g - like %G, but without the century
+
+	%G - 4-digit year corresponding to the ISO week number (see %V).
+
+	%h - same as %b
+
+	%H - hour, using a 24-hour clock (00 to 23)
+
+	%I - hour, using a 12-hour clock (01 to 12)
+
+	%j - day of the year (001 to 366)
+
+	%m - month (01 to 12)
+
+	%M - minute
+
+	%n - newline character
+
+	%p - either am or pm according to the given time value
+
+	%r - time in a.m. and p.m. notation
+
+	%R - time in 24 hour notation
+
+	%S - second
+
+	%t - tab character
+
+	%T - current time, equal to %H:%M:%S
+
+	%u - weekday as a number (1 to 7), Monday=1. Warning: In Sun Solaris Sunday=1
+
+	%U - week number of the current year, starting with the first Sunday as the first day of the first week
+
+	%V - The ISO 8601 week number of the current year (01 to 53), where week 1 is the first week that has at least 4 days in the current year, and with Monday as the first day of the week
+
+	%W - week number of the current year, starting with the first Monday as the first day of the first week
+
+	%w - day of the week as a decimal, Sunday=0
+
+	%x - preferred date representation without the time
+
+	%X - preferred time representation without the date
+
+	%y - year without a century (range 00 to 99)
+
+	%Y - year including the century
+
+	%Z or %z - time zone or name or abbreviation
+
+	%% - a literal % character
+
 ```
 
 ## Lists
@@ -513,6 +594,87 @@ Special Notes about Python:
 
 #### .
 
+## Matplotlib
+
+### Basic Plot
+```
+	# import
+	import matplotlib.pyplot as plt
+
+	# example data
+	year = [1990, 1991, 1992]
+	values = [10, 20, 30]
+
+	# create the plot
+	# plt.plot(horizontal_axis, vertical_axis)
+
+	plt.plot(year, values)
+
+	# display the plot
+	plt.show()
+```
+
+### Basic Fill Between (Area Plot)
+```
+	# import
+	import matplotlib.pyplot as plt
+
+	# example data
+	year = [1990, 1991, 1992]
+	values = [10, 20, 30]
+
+	# improve the plot
+	plt.fill_between(year, values, 0, color='green')
+
+	# name axis and title
+	plt.xlabel('horizontal name')
+	plt.ylabel('vertical name')
+	plt.title('title of chart')
+	
+	# adjust ticks in billions for example
+	plt.yticks([0, 2, 4],
+				['0', '2B', '4B'])
+
+	# display the plot
+	plt.show()
+```
+
+### Basic Multi-Variable Scatter (Bubble)
+```
+	# import
+	import matplotlib.pyplot as plt
+	import numpy as np
+
+	# example data
+	year = [1990, 1991, 1992]
+	values = [10, 20, 30]
+	sizes = [100, 20, 300]
+	np_sizes = np.array(sizes)
+
+	# create the scatter
+	# plt.scatter(horizontal, vertical, s = size, c = color, alpha = transparency)
+	plt.scatter(year, values, s = np_sizes)
+
+	# name axis and title
+	plt.xlabel('horizontal name')
+	plt.ylabel('vertical name')
+	plt.title('title of chart')
+	
+	# adjust ticks in billions for example
+	plt.yticks([0, 2, 4],
+				['0', '2B', '4B'])
+
+	# display the scatter plot
+	plt.show()
+```
+
+### Adding Text and Grids
+```
+	plt.text(h_location, v_location, 'text')
+	plt.grid(True)
+```
+
+## Grammar of Graphics (ggplot) in Python
 
 **END INTERMEDIATE**
 ---
@@ -716,7 +878,7 @@ Special Notes about Python:
 
 ## Exploring Data
 
-- **Show Only Columns with Object Values**
+### **Show Only Columns with Object Values**
 
 > This is useful to investigate why values did not automatically converted to numeric.
 
@@ -724,13 +886,13 @@ Special Notes about Python:
 	df.loc[:, df.dtypes==object]
 ```
 
-- **Comparing Variances**
+### **Comparing Variances**
 
 ```
 	(df.std()*2).sort_values(ascending=False)
 ```
 
-- **Getting a Random Sample of Dataset**
+### **Getting a Random Sample of Dataset**
 
 ```
 	# set the sampling random seed
@@ -740,7 +902,7 @@ Special Notes about Python:
 	df.sample(x)
 ```
 
-- **Subsetting Dataset**
+### **Subsetting Dataset**
 
 ```
 	# slicing by column name
@@ -752,7 +914,7 @@ Special Notes about Python:
 	df.iloc[:, 0:9]
 ```
 
-- **Null Value Percentages**
+### **Null Value Percentages**
 
 ```
 	# get the values per features
@@ -762,7 +924,7 @@ Special Notes about Python:
 	df.isna().sum().sum() / np.product(df.shape)	
 ```
 
-- **Showing all Rows with Null**
+### **Showing all Rows with Null**
 
 ```
 	# whole table
@@ -772,7 +934,7 @@ Special Notes about Python:
 	df[['col1', 'col2', 'col3']][df.column_most_null.isnull()]
 ```
 
-- **Finding Conditions in Rows**
+### **Finding Conditions in Rows**
 
 ```
 	# conditions on string
@@ -787,7 +949,7 @@ Special Notes about Python:
 		    (df.col2 == 30))
 ```
 
-- **Using Conditions to Find Rows**
+### **Using Conditions to Find Rows**
 
 ```
 	# always use parenthesis to avoid errors
@@ -796,7 +958,7 @@ Special Notes about Python:
 	df_new = df.loc[condition]
 ```
 
-- **Grouping Aggregates**
+### **Grouping Aggregates**
 
 ```
 	# counting the number of values
@@ -812,7 +974,7 @@ Special Notes about Python:
 	df.groupby(['col1'])[['col2']].sum()
 ```
 
-- **Unique Values**
+### **Unique Values**
 
 ```
 	# listing unique values
@@ -825,22 +987,44 @@ Special Notes about Python:
 	df.col1.value_counts().count()
 ```
 
-- **Investigating Data Types**
+### **Investigating Data Types**
 
 ```
 	df.dtypes
 ```
 
-- **Descriptive Statistics**
+### **Descriptive Statistics**
 
 ```
 	df.describe()
 ```
 
-- **Wildcard**
+### **Wildcard**
 
 ```
 	df[df.col1.str.find('str') >= 0]
+```
+
+### **Quick Problems**
+> 1. Using numpy, find the year where the company turned
+profits higher than $100 millions
+
+```
+	# data in list
+	profit_in_mil = [90, 100, 120, 200]
+	years = [2000, 2001, 2002, 2003]
+
+	# converting to numpy
+	np_profit = np.array(profit_in_mil)
+	np_years = np.array(years)
+
+	# conditional subsetting profit
+	condition = np_profit > 100
+
+	# finding the minimun year
+	np_year[condition].min()
+
+	Out[1]: 2002
 ```
 
 ## Exploring Visually
@@ -1364,6 +1548,22 @@ Special Notes about Python:
 	<% endfor %>
 
 ```
+
+#### now function
+```
+	# If the date is Sautrday, August 8, 2018
+
+	#Y = 2018
+	#y = 18
+	#M = Aug
+	#m = 08
+	#D = Sat
+	#d = 11
+
+	{% now "Y" %}
+```
+
+#### Setting up Models & Migrations
 
 ## Anaconda Prompt
 

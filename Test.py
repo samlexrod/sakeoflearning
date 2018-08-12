@@ -1,9 +1,5 @@
-import numpy as np
+from datetime import datetime
 
-height = np.round(np.random.normal(1.75, .20, 5000), 2)
+time_now = datetime.now().strftime('%Y-%m-%d')
 
-weight = np.round(np.random.normal(60.3, 16, 5001), 2)
-
-np_stack = np.column_stack((height, weight))
-
-print(np_stack)
+print(time_now)
