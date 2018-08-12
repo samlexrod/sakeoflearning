@@ -577,6 +577,27 @@ Directive:
 
 ## The beaty of Pandas
 
+### Data Load
+
+```
+	mat = loadmat('folder/data.mat')
+	df = pd.read_csv('folder/data.csv', sep=',', index_col=0)
+	df = pd.read_sql_table('tablename', engine, columns=['col1', 'col2'])
+	df = pd.read_excel('folder/data.xlsx', 'Sheet1', na_values=['NA', '?'])
+	df = pd.read_json('folder/data.json', orient='columns')
+	df = pd.read_html('http://page.com/with/table.html')[0]
+	img = misc.imread('image.png')
+	sample_rate, audio_data = wavefile.read('sound.wav')
+```
+
+### Data Dump
+
+```
+	df.to_sql('table', engine)
+	df.to_excel('folder/data.xlsx')
+	df.to_jason('folder/data.json')
+	df.to_csv('folder/data.csf')
+```
 
 ### .DataFrame
 
@@ -695,9 +716,7 @@ Directive:
 	%timeit # mean and stdev per loop
 ```
 
-## Loading and Dumping Data
-
-### Magic Command
+## Magic Command
 ```
 	%matplotlib notebook				# interactive render
 	%matplotlib inline				# create plot instantly
@@ -705,34 +724,12 @@ Directive:
 	matplotlibe.style.use('ggplot') # ggplot look
 ```
 
-### Imports
+## Imports
 
 ```
 	from scipy.io import loadmat			# for MATLAB files
 	from scipy import misc 					# for images
 	from scipy.io.wavfile import wavfile 	# for audio
-```
-
-### Data Load
-
-```
-	mat = loadmat('folder/data.mat')
-	df = pd.read_csv('folder/data.csv', sep=',', index_col=0)
-	df = pd.read_sql_table('tablename', engine, columns=['col1', 'col2'])
-	df = pd.read_excel('folder/data.xlsx', 'Sheet1', na_values=['NA', '?'])
-	df = pd.read_json('folder/data.json', orient='columns')
-	df = pd.read_html('http://page.com/with/table.html')[0]
-	img = misc.imread('image.png')
-	sample_rate, audio_data = wavefile.read('sound.wav')
-```
-
-### Data Dump
-
-```
-	df.to_sql('table', engine)
-	df.to_excel('folder/data.xlsx')
-	df.to_jason('folder/data.json')
-	df.to_csv('folder/data.csf')
 ```
 
 ## Data Munging
@@ -1585,4 +1582,10 @@ https://conda.io/docs/user-guide/tasks/manage-environments.html
 
 	# removing environment
 	conda remove --name myenv --all
+
+	# get requirements
+	conda freeze > requirements.txt
+
+	# installing from other environment
+	conda install -r requirements.txt
 ```
