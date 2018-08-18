@@ -23,6 +23,21 @@ Special Notes about Python:
 
 # Basics
 
+## IDE
+```
+	# IDLE is the default
+	# VSCode is my preferred
+	# PyCharm is not free
+	# Spyder is my second favorite
+	# Sublimetext is my third favorite
+```
+
+## Notebooks
+```
+	# Jupyter Notebook
+	# Azure Notebook
+```
+
 ## Commenting in Python
 ```
 	#this is a comment
@@ -39,7 +54,54 @@ Special Notes about Python:
 	?min
 ```
 
-## Conditional Steatements
+## None
+> None represents a lack of value. Functions without return statment will return None values.
+
+```
+	# the print funciton prints None as default
+	print() # Out[1]: 
+
+	# assigning print to a variable assigns None
+	spam = print()
+	spam == None # Out[1]: True
+
+	# a function withot a return statment will return None
+	def this_function():
+    	pass
+
+	spam = this_function()
+	print(spam == None) Out[1]: True
+```
+
+## Global and Local
+> Global scope variables can be used everywere. Local scope variables can only be used in the local scope.
+> Any local scope variables will be erase from memory after the functions ends.
+> Global scope variables will remain in memory until the script is done or the notebook terminated.
+> Gobal scope variables can be manipulated at a local level if it is declared as global at the local level.
+
+```
+	# this is the global socpe of the variable
+	spam = 'global'
+	eggs = 'global'
+
+	# this is the local scope of the variable
+	def in_function():
+		"""any variables here will exist 
+		only at the function level"""	
+		gobal eggs
+
+		spam = 'local'
+		eggs = 'local'
+
+		return spam + ' ' + eggs
+
+	print(in_function()) # Out[1]: local local
+
+	# the local scope does not change the global scope
+	print(spam, eggs) # Out[1]: global local
+```
+
+## If elif Conditional Steatements
 ```
 	"""
 	== equals
@@ -58,19 +120,34 @@ Special Notes about Python:
 		print("One does not equal to two, but will not run because the first one will")
 	else:
 		print("Will not run on this condition")
-```
 
-## Functions
-```
-	# creating the function
-	def functionName(parameter1):
-		return parameter1
-
-	# calling the funciton
-	print(functionName("The console will print this!"))
+	# implicit true or false
+	implicit = ''
+	if implicit:
+		print('implicit must not have blanks to pass')
+	else:
+		print('implicit have blanks so it pass here')
 ```
 
 ## Built-in Functions
+
+### print()
+> The print function will implicitly create a new line.
+
+```
+	# print will create a new line
+	print('Hello')
+	print('World')
+
+	# adding and argument to the parameter end will avoid the new line
+	print('Hello', end=' ')
+	print('World')
+
+	# the sep paramenter separate items printed in a list
+	# by not passing an argument to the sep paramenter, the print
+	# statment will concatenate both words withot space as default
+	print('Hello', 'World', sep=' ')
+```
 
 ### type()
 ```
@@ -97,6 +174,17 @@ Special Notes about Python:
 	# Sorting a dictionary in descending order
 	# set itemgetter to 1 to order by value, 0 to order by key
 	sorted(yourdict.items(), key=operator.itemgetter(1), reverse=True)
+```
+
+## Custom Functions
+```
+	# creating the function
+	def functionName(parameter1):
+		return parameter1
+
+	# calling the funciton
+	argument1 = "The console will print this!"
+	print(functionName(argument1))
 ```
 
 ## Python General Methods
@@ -417,8 +505,8 @@ Directive:
 	from i in range(1, len(listName)):
 		print(listName[i])
 
-	# print ranges from 1 to 9
-	fro i in range(1, 10):
+	# print ranges from 0 to 9
+	from i in range(0, 10):
 		print(i)
 ```
 
@@ -428,6 +516,35 @@ Directive:
 	while condition < 18:
 		print(condition)
 		condition += 1
+```
+
+## Useful Packages
+
+### pyperclip
+```
+	# copy to clipboard
+	pyperclip.copy('text')
+
+	# paste from clipboard
+	pyperclip.paste()
+```
+
+### Break
+```
+	while True: #< always true
+		print('Hello World!')
+		break_word == 'break word'
+		if break_word == 'break word':
+			break #< breaks the loop
+```
+### Continue
+```
+	spam = 0
+	while spam < 5:
+		spam = spam + 1
+		if spam == 3:
+			continue
+		print('This will be skipped when spam == 3. Look: ' + str(spam))
 ```
 
 **END BASICS**
@@ -480,10 +597,15 @@ Directive:
 
 #### Measures of Relliability
 
+#### .logical_and()
+```
+	np.logical_and(df.menage > 30, df.mensalary > 50000)
+```
+
 ##### .corrcoef()
 ```
 	# correlation between two variables (columns)
-	np.corrcoef(np_array[:, 0], np_array[:, 0])
+	np.corrcoef(np_array[:, 0], np_array[:, 1])
 ```
 
 ### Arrays
@@ -576,12 +698,22 @@ Directive:
 
 
 ## The beaty of Pandas
+> Unlike general Python and Numpy, pandas can handle different data types in a column or row. The columns correspond to the variables, and the rows correspond to observations.
+
+
+
+MY TIME IS GOLD!
 
 ### Data Load
 
 ```
 	mat = loadmat('folder/data.mat')
+
+	# if column one has index
 	df = pd.read_csv('folder/data.csv', sep=',', index_col=0)
+	# if there is no explicit index
+	df = pd.read_csv('folder/data.csv', sep=',')
+
 	df = pd.read_sql_table('tablename', engine, columns=['col1', 'col2'])
 	df = pd.read_excel('folder/data.xlsx', 'Sheet1', na_values=['NA', '?'])
 	df = pd.read_json('folder/data.json', orient='columns')
@@ -605,15 +737,101 @@ Directive:
 ```
 	# convert a dictionary to dataframe
 	egdict = {'column1': [1, 2], 'column2': [3, 4]}
-	df = pandas.DataFrame.from_dict(egdict, orient='column')
+	df = pd.DataFrame.from_dict(egdict)
 
 	# pivot column to rows and rename pivoted columns
 	egdict = {'column1': [1, 2], 'column2': [3, 4]}
-	df = pandas.DataFrame.from_dict(egdict, orient='index',
+	df = pd.DataFrame.from_dict(egdict, orient='index',
 									columns=['rowtocol1', 'rowtocol2'])
 ```
 
-#### .
+### Add Columns
+```
+	# Using a list
+	df['column3'] = [True, False]
+
+	# Using extisting columns
+	df['column4'] = (df['column1'] + df['column2']) * 10
+```
+
+### Rows as Columns
+```
+	# Access row at index 0 as columns
+	egdict.loc[0]
+```
+
+### Extract Series or DataFrame
+```
+	# Extract DataFrame wit double brackets
+	df[['column1']]
+
+	## Extract two set of observation from two variables as DataFrame
+	df[['column1', 'column2']]
+
+	# Extract Series with single brackets
+	df['columnn']
+```
+
+### Select an entire row by its row label
+```
+	df.loc['row_label', :]
+```
+
+### Show Non-Objects
+```
+	# using the .loc[rows, columns] method
+	df.loc[:, df.dtypes != object]
+
+	# using the .describe() argument method
+	df.describe(exclude=['object'])
+```
+
+### Absolute Values
+```
+	df['number_pos'] = df['number_pos_neg'].abs()
+```
+
+### Top N Smallest
+```
+	N = 5
+	df.nsmallest(N, 'number_pos')
+```
+
+### Grouping By
+```
+	# group by and show count only on a selected variable
+	df.groupby(['category']).select_variable.count()
+
+	# selecte list of variables
+	df.groupby(['category'])['var1', 'var2'].count()
+
+	# group by and show count on all
+	df.groupby(['category']).count()
+
+	# Show average by using .mean()
+	# Show other descriptive stats
+```
+
+### Get the Size of Dataset
+```
+	# quite simple
+	df.size
+```
+
+### Drop NaN
+```
+	# axis=1 is used to drop columns
+	# axis=0 is used to drop rows
+	# use inplace=True to commit changes
+
+	df.dropna(axis=1, inplace=True)
+```
+
+### Convert to Numeric
+```
+	# Convert object column to numeric
+	df['mean'] = pd.to_numeric(df['mean'])
+```
 
 ## Matplotlib
 
@@ -693,6 +911,50 @@ Directive:
 ```
 	plt.text(h_location, v_location, 'text')
 	plt.grid(True)
+```
+
+### Handling Ticks
+```
+	import numpy as np
+	# list of positions at which ticks should be placed
+	locs = np.arange(len(variable.index))
+
+	# explicit labels to place at given locs
+	## variable must be a DataFrame
+	labels = variable.index
+
+	# the rotation argument is the alignment
+	r = 'vertical'
+
+	# set ticks
+	plt.xticks(
+		locs,
+		labels,
+		rotation = r
+	)
+
+```
+
+
+### Scatter Parameters
+```
+	# called using plt.scatter()
+	# also called using df.plot(kind='scatter')
+	# color or c = color of points
+	# marker = type of point
+```
+
+### Histogram Parameters
+```
+	# called using plt.hist()
+	# also called using df.plot(kind='hist')
+	# bins = grouping of values, or brackets
+```
+
+### Plot Parameters
+```
+	# called using plt.plot()
+	# create bar by using kind='bar'
 ```
 
 ## Grammar of Graphics (ggplot) in Python
@@ -1561,6 +1823,130 @@ profits higher than $100 millions
 ```
 
 #### Setting up Models & Migrations
+
+### Starting A Project Basic Step by Step
+
+#### 1. Create a project
+```
+	# in anaconda distribution command line
+	>python manage.py startproject projectname
+
+	# in anaconda distribution command line
+	>rename projectname projectname-project
+```
+
+#### 2. Connect to database
+```
+	# in settings.py
+	DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'projectname',
+        'USER': 'postgres',
+        'PASSWORD': 'yourpassword',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+```
+#### 3. Migrate to database
+```
+	# in anaconda distribution comman line
+	>python manage.py migrate
+```
+
+#### 4. Create apps
+```
+	# in anaconda distribution command line
+	>python manage.py startapp appname
+```
+
+#### 5. Create home and other funcitons in the views
+```
+	# in the veiws.py
+	def home(request):
+		return render(request, 'appname/home.html')
+```
+
+#### 6. Make new folder(s) and file(s) template/appname/*.html file(s) folder under the appname
+
+#### 7. Create path for apps
+```
+	# import the views from the app
+	from appname.views.views import home
+
+	# create the path for home
+	path('', home, name='home')
+```
+
+#### 8. Add app to settings
+```
+	# in settings.py
+	INSTALLED_APPS = [
+	'appname.apps.AppnameConfig',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',]
+```
+
+#### 9. Create a projectname/templates/base.html file
+```
+	# add the base.html folder to the directory
+	TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': ['projectname/templates'], #<-- This is the folder to add, the rest is defaulted
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+	# the key is in the middle to where other *.html files will fill conent
+	Top content
+
+	{% block content %}
+	{% endblock %}
+
+	Bottom content
+
+	# in *.html
+	{% extends 'base.html' %}
+	{% block content %}
+	Any content here...
+	{% endblock %}
+```
+
+#### 10. Add static folders and set the static root
+```
+	# create a appname/static folder to insert any images or static files
+
+	# in the *.html page under the head tag
+	{% load staticfiles %}
+
+	# go to settings.py and create the static root
+	STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+	STATIC_URL = '/static/'
+
+	# create a link to static files outside of apps
+	STATICFILES_DIR = [
+		os.path.join(BASE_DIR, 'projectname/static/')
+	]
+
+	# in the anaconda prompt collect static
+	>python manage.py collectstatic
+```
+
+
 
 ## Anaconda Prompt
 
