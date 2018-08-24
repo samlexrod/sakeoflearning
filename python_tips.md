@@ -697,7 +697,7 @@ Directive:
 ```
 
 
-## The beaty of Pandas
+## The beauty of Pandas
 > Unlike general Python and Numpy, pandas can handle different data types in a column or row. The columns correspond to the variables, and the rows correspond to observations.
 
 
