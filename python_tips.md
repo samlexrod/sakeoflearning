@@ -47,6 +47,14 @@ Special Notes about Python:
 	comment as a variable"""
 ```
 
+## Line Continuator Operator
+```
+	# use backward slash to separate code in lines
+	if a == b and c == d and e == f and g == h \
+		and i == j and k == l and m == n and o == p \
+		and q == r and s == t and u == v and w == x and y == z:
+```
+
 ## Help
 ```
 	# will output information about the function
@@ -174,6 +182,14 @@ Special Notes about Python:
 	# Sorting a dictionary in descending order
 	# set itemgetter to 1 to order by value, 0 to order by key
 	sorted(yourdict.items(), key=operator.itemgetter(1), reverse=True)
+```
+
+### startswith()
+```
+	str = 'Samuel starts with Sa'
+	print(str.startswith('Sa')) #Out[1]: True
+	print(str.startswith('Sa', 2, 4)) #Out[1]: False
+	print(str.startswith('Sa', -2, len(str))) #Out[1]: True
 ```
 
 ## Custom Functions
@@ -701,9 +717,6 @@ Directive:
 > Unlike general Python and Numpy, pandas can handle different data types in a column or row. The columns correspond to the variables, and the rows correspond to observations.
 
 
-
-MY TIME IS GOLD!
-
 ### Data Load
 
 ```
@@ -832,6 +845,17 @@ MY TIME IS GOLD!
 	# Convert object column to numeric
 	df['mean'] = pd.to_numeric(df['mean'])
 ```
+
+## Try Error
+```
+	# Error handling a zero division
+
+	try:
+		return 42/0
+	except ZeroDivisionError:
+		print('Error: Division by Zero')
+```
+
 
 ## Matplotlib
 
@@ -1726,6 +1750,16 @@ profits higher than $100 millions
 	# deploying django
 	python manage.py runserver
 ```
+### Pain Killers
+```
+	# Always start your classes with capital letters
+	class Product(request):
+
+	"""
+	This will avoid issues between variables and classes.
+	"""
+```
+
 
 ### .gitignore
 ```
