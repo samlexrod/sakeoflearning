@@ -23,6 +23,13 @@ Special Notes about Python:
 
 # Basics
 
+## Help
+```
+	# will output information about the function
+	help(min)
+	?min
+```
+
 ## IDE
 ```
 	# IDLE is the default
@@ -47,6 +54,17 @@ Special Notes about Python:
 	comment as a variable"""
 ```
 
+## String concatenation
+> Python concatenates only on string values. Therefore, other data types must be converted to string before concatenation. We can use the string function str() to convert data to string.
+
+```
+	# concatenate on print function
+	print("You " + "concatenated " + "this " + str(1) + " time.")
+
+	# concatenate on variable
+	message_var = "You " + "concatenated " + "this " + str(1) + " time."
+```
+
 ## Line Continuator Operator
 ```
 	# use backward slash to separate code in lines
@@ -55,14 +73,40 @@ Special Notes about Python:
 		and q == r and s == t and u == v and w == x and y == z:
 ```
 
-## Help
+## Multi-variable assignment
+
 ```
-	# will output information about the function
-	help(min)
-	?min
+	# color, shape, and texture assignment with list
+	color, shape, texture = ['red', 'round', 'soft']
+
+	# color, shape, and texture assignment with values
+	color, shape, texture = 'red', 'round', 'soft'
+
+	# swaping variables
+	a = 2
+	b = 4
+	a, b = b, a
+```
+## Augmented Assignment Operators
+```
+	# sumation
+	spam += 1
+
+	# substraction
+	spam -= 1
+
+	# multiplication
+	spam *= 1
+
+	# division
+	spam /= 1
+
+	# residual
+	spam %= 1
 ```
 
-## None
+
+## None values
 > None represents a lack of value. Functions without return statment will return None values.
 
 ```
@@ -192,6 +236,18 @@ Special Notes about Python:
 	print(str.startswith('Sa', -2, len(str))) #Out[1]: True
 ```
 
+### range()
+```
+	# create a list from 0 to 3
+	range(4)
+
+	# create a list from 1 to 4
+	range(1, 5)
+
+	# create a list of the size of a list
+	range(len(list))
+```
+
 ## Custom Functions
 ```
 	# creating the function
@@ -201,6 +257,21 @@ Special Notes about Python:
 	# calling the funciton
 	argument1 = "The console will print this!"
 	print(functionName(argument1))
+```
+
+
+
+## Useful Python Packages and Modules
+
+### random
+
+#### randint()
+```
+	# import 
+	from random import randint
+
+	# get a random numbers from 1 to 20
+	rand_num = randint(1, 20) 
 ```
 
 ## Python General Methods
@@ -388,6 +459,7 @@ Directive:
 ```
 
 ## Lists
+> A list is a value that contains values or other lists. Values are called items, which are comma delimited. 
 
 ### Declaring, Indexing, Slicing
 ```
@@ -448,22 +520,121 @@ Directive:
 	sorted_list = sorted(list, reverse=True)
 ```
 
+### Multi-variable assignment with lists
+```
+	# color, shape, and texture assignment
+	color, shape, texture = ['red', 'round', 'soft']
+```
+
+### Line Orientation
+> There is no need for line continuator when using lists. Python already intepret the list as one line when it is broken in separate lines.
+```
+	spam = ['one',
+			'two',
+			'three',
+			'four',
+			'five']
+```
+
+### List Concatenation
+> Unlike string concatenation, list concatenation can have multiple data types. Unlike in Numpy (as you will see next), using the plus operator on lists will combine them. 
+
+```
+	# concatenate 2 different lists
+	list1 = [1, 2, 3]
+	list2 = ['four', 'five', 'six']
+
+	list_concat = list1 + list2
+```
+
+### in and not in Operator in List
+> This operator will return true if a value is found in a list.
+```
+	# find "two" in the list
+	list = [1, 2, 'two', 'three']
+
+	'two' in list #Out[1]: True
+
+	'two' not in list #Out[1]: False
+```
+
+### List Statements
+
+#### del
+> It is used to delete items from a list by index. It will not leave gaps on the list. Thus, it will shift the index down unles the item deleted is the last item.
+
+```
+	# deletion from list
+	list = [1, 2, 3]
+	del list[1]
+```
+
 ### List Methods
 
+#### .index()
+> Used to find the index of an item. If there are duplicates, the index method will only return the first index.
+```
+
+```
+
 #### .insert()
-> Assignment to variable is not needed.
+> Inserts an item anywhere inside the list. Assignment to variable is not needed. It is assigned inplace.
 ```
 	# inserting to list
 	listName.insert(0, "item2")
 ```
 
 #### .append() 
-> Assignment to variable is not needed.
+> Inserts an item at the end of the list. Assignment to variable is not needed. It is assigned inplace.
 ```
 	# add values to a list
 	list = [1, 2]
 	list.append(3)
 ```
+
+#### .remove()
+> Removes items from the list, one at a time. It allowes you to specify a value for the deletion, unlike when using the delete statement. Likewise, it will delete only the first item matching the value if there are duplicates. Assignment to variable is not needed. It is assigned inplace.
+```
+	list = [1, 2, 3]
+	
+	# remove 3 from the list
+	list.remove(3)
+
+```
+#### .sort()
+> It sort all items in the list on a ascending order by default or a decending order when the reverse parameter is passed as true. If it is applied to strings, it will sort in ASCII-betical order. To sort in true alphabetical order pass the key parameter as str.lower().
+```
+	# using numbers
+	list = [3, 2, 1]
+
+	list.sort() #Out[1]: [1, 2, 3]
+
+	list.sort(reverse=True) #Out[1]: [3, 2, 1]
+
+	# using strings
+	list = ['a', 'b', 'C', 'D']
+
+	# sorting on ASCII
+	list.sort() #Out[1]: ['C', 'D', 'a', 'b']
+
+	# sorting alphabetically
+	list.sort(key=str.lower()) #Out[1]: ['a', 'b', 'C', 'D']
+```
+
+### Mutable and Inmutable difference between Str and List
+> Strings can act as lists at an individal character level. You can use any method used in list in a string given that it is not attempting to add or remove characters. String values are inmutable unlike list items. But we can use slicing and concatenation to manipulate strings.
+
+#### Manipulating strings
+```
+	# implicit
+	name_msg = 'My name is Danny'
+	new_name_msg =  name_msg[:11] + 'Sammy'
+
+	# explicit
+	name_msg = 'My name is Danny'
+	new_name_msg =  name_msg[:name_msg.index('Da')] + 'Sammy'
+```
+
 
 ## Dictionaries
 ```
@@ -1721,6 +1892,31 @@ profits higher than $100 millions
 	ax.scatter(df_t.col1, df_t.col2, c=c_color, marker='o', alpha=0.2)	
 ```
 
+## Python Pain Killers
+
+### References of lists in memory
+```
+	# the pain
+	def bacon(bake_beans):
+		bake_beans.append("I don't like Spam")
+	
+	spam = [1, 2, 3]
+	bacon(spam)
+	print(spam)
+
+	#Out[1]: [1, 2, 3, 'I don't like Spam']
+
+	# the pain killer
+	def bacon(bake_beans):
+		bake_beans.append("I don't like Spam")
+	
+	spam = [1, 2, 3]
+	bacon(spam[:]) #<- index to create another reference
+	print(spam)
+
+	#Out[1]: [1, 2, 3, 'I don't like Spam']
+```
+
 # Other
 
 ## django
@@ -1750,7 +1946,7 @@ profits higher than $100 millions
 	# deploying django
 	python manage.py runserver
 ```
-### Pain Killers
+### dango Pain Killers
 ```
 	# Always start your classes with capital letters
 	class Product(request):
@@ -1760,6 +1956,8 @@ profits higher than $100 millions
 	"""
 ```
 
+### {% csrf_token %}
+> Use it whenever there is a POST request to prevent csrf attacks.
 
 ### .gitignore
 ```
