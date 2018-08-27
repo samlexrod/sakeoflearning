@@ -19,8 +19,6 @@ Special Notes about Python:
 	3. A method is a function inside of a class.
 
 
-*Get help by adding a ? at the end of the method in question.
-
 # Basics
 
 ## Help
@@ -52,6 +50,7 @@ Special Notes about Python:
 	a multiline comment"""
 	variable = """you can set a multiline 
 	comment as a variable"""
+	sql = """the comment can be an sql statement"""
 ```
 
 ## String concatenation
