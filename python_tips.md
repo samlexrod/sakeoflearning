@@ -927,8 +927,8 @@ Directive:
 	df = pd.DataFrame.from_dict(egdict, orient='index',
 									columns=['rowtocol1', 'rowtocol2'])
 ```
-
-### Add Columns
+### Columns
+#### Add Columns
 ```
 	# Using a list
 	df['column3'] = [True, False]
@@ -936,8 +936,15 @@ Directive:
 	# Using extisting columns
 	df['column4'] = (df['column1'] + df['column2']) * 10
 ```
+#### Rename Columns
+```
+	# renaming columns
+	df.rename(columns = {'column1':'rename_column1', 'column2':'rename_column2'})
+```
 
-### Rows as Columns
+
+### Rows
+#### Rows as Columns
 ```
 	# Access row at index 0 as columns
 	egdict.loc[0]
