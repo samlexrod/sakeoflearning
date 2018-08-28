@@ -118,7 +118,7 @@ Special Notes about Python:
 
 	# a function withot a return statment will return None
 	def this_function():
-    	pass
+    		pass
 
 	spam = this_function()
 	print(spam == None) Out[1]: True
@@ -217,7 +217,7 @@ Special Notes about Python:
 
 ```
 
-### Sorted()
+### sorted()
 ```
 	# Sort a list in descending order
 	sorted(yourlist, reverse=True)
@@ -354,14 +354,14 @@ Special Notes about Python:
 	name.replace('s', 'm') # returns manuel
 ```
 
-### .append() = x = not needed
+### .append() 
 ```
 	# adding to the end of a list
 	list = [1, 2, 'three', 2]
 	list.append(2) # returns [1, 2, 'three', 2, 2]
 ```
 
-### .reverse() = x = not needed
+### .reverse()
 ```
 	# sort values in decending order
 	list = [3, 2, 1]
