@@ -636,18 +636,155 @@ Directive:
 
 
 ## Dictionaries
+> Unlike list, dictionaries are unordered.
+
+### Dictionary Structure
+```
+	# it is based on key and value
+	my_dict = {'key1':'value1', 'key2':'value2'}
+
+	# values can be lists
+	my_dict = {'key1':[1, 1], 'key2':[2, 2]}
+
+	# keys can be integers
+	my_dict = {1:[1, 1], 2:[2, 2]}
+```
+
+### Declaring a Dictionary
+
 ```
 	# declaring dictionary
 	dicName = {}
+```
 
-	# inserting to dictionary
-
+### Inserting to a Dictionary
+```
 	# updating dictionary
 	dictName["keyname"] = "newkeyname"
+```
 
+### Accessing key in a Dictionary
+```
 	# accessing key values
 	dicName["keyname"]
 ```
+
+### Verifiying if 2 Dicts are the same
+```
+	# two dicts with different order
+	my_dict1 = {'key1': [1, 1], 'key2':[2, 2]}
+	my_dict2 = {'key2': [1, 1], 'key1':[2, 2]}
+
+	# since it is unordered, they equal
+	my_dict1 == my_dict2 #Out[1]: True
+
+	# list comparison example
+	list1 = [1, 2, 3]
+	list2 = [3, 2, 1]
+
+	# since lists are ordered, they don't equal
+	list1 == list2 #Out[1]: False
+```
+
+### Dictionary Methods
+
+#### .keys()
+```
+	# it will return a dict_keys class with keys
+	my_dict.keys()
+```
+
+#### .values()
+```
+	# it will return a dict_keys class values
+	my_dict.values()
+```
+
+#### .items()
+```
+	# it will return tuples of keys and values
+	my_dict.items()
+
+	# you can access keys and values in a for loop
+	for key, value in my_dict.items():
+		print(key, value)
+```
+
+#### .get()
+```
+	# quick way to handling errors
+	# when key is not found
+	my_dict1.get('key3', 'not found')
+```
+
+#### .setdefault()
+```
+	# inserting key and values 
+	# when key does not exist
+	my_dict1.setdefault('key3', [3, 3])
+```
+
+### Incrementing count that does not exist
+```
+	# string to read
+	cool_hand_luke = "What we've got here is... failure to communicate. Some men you just can't reach. So you get what we had here last week, which is the way he wants it... well, he gets it. I don't like it any more than you men."
+
+	# declaring the dictionary of letter counts
+	letter_count = {}
+
+	# constructing the dictionary of letter counts
+	for letter in cool_hand_luke.upper():
+		# to handle incrementing errors
+		letter_count.setdefault(letter, 0)
+
+		# incrementing
+		letter_count[letter] = letter_count[letter] + 1
+```
+
+### Using pprint for Dictionaries
+```
+	""" since dictionaries are unordered
+	it is best to use pprint to see the results
+	"""
+
+	from pprint import pprint
+	pprint(letter_count)
+
+	{' ': 42,
+	"'": 3,
+	',': 2,
+	'.': 10,
+	'A': 12,
+	'C': 5,
+	'D': 2,
+	'E': 23,
+	'F': 1,
+	'G': 3,
+	'H': 12,
+	'I': 10,
+	'J': 1,
+	'K': 2,
+	'L': 5,
+	'M': 6,
+	'N': 8,
+	'O': 10,
+	'R': 5,
+	'S': 8,
+	'T': 17,
+	'U': 6,
+	'V': 1,
+	'W': 9,
+	'Y': 5}
+```
+
+### Creating list of Dictionaries
+```
+	dict_list = []
+	dict_list.append({'key1':[1, 1], 'key2':[2, 2]})
+	dict_list.append({'key3':[3, 3], 'key4':[4, 4]})
+	dict_list.append({'key5':[5, 5], 'key6':[6, 6]})
+```
+
 
 ## Classes
 ```
