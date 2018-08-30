@@ -1,3 +1,24 @@
+# New unordered content
+
+## pyodbc
+
+### Data Connections
+```
+	import os, pyodbc as odbc
+
+	driver = '{'+[x for x in odbc.drivers() if x.find('.accdb')>0][0]+'}'
+	file_path = os.getcwd() + '\\filename.accdb'
+
+	conn_str = 'DRIVER={a};DBQ={b};'.format(a=driver, b=file_path)
+
+	cnxn = odbc.connect(conn_str)
+
+	crsr = cnxn.cursor()
+
+	for table_info in crsr.tables(tableType='TABLE'):
+	    print(table_info.table_name)
+```
+
 # Python Tips: Samuel's Approach
 
 > Here you will find a repository of data mining approaches. These approaches will be updated as I found new and improved ways to solve an issue. Please feel free to do a push request if you find a better way of approaching a problem. Thank you for visiting my repository!
