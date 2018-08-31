@@ -1,5 +1,36 @@
 # New unordered content
 
+
+
+## Pandas
+
+### Transposing Uneven List
+```
+	import pandas as pd
+
+	list1 = [1, 2, 3]
+	list2 = [10, 20]
+	list3 = [100]
+
+	list_all = [list1, list2, list3]
+
+	df = pd.DataFrame(list_all, ['list1', 'list2', 'list3']).T
+	
+	# using it with unique values
+	
+	column_names = df.columns.replace(' ', '_')
+	
+	list_unique = []
+	[list_unique.append(df[column].unique()) for column in column_names]
+	
+	df_unique = pd.DataFrame(list_unique, column_names).T
+```
+
+### XlsWriter with Pandas
+```
+
+```
+
 ## pyodbc
 
 ### Data Connections
