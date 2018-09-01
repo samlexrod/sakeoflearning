@@ -35,6 +35,7 @@ Special Notes about Python:
 	# PyCharm is not free
 	# Spyder is my second favorite
 	# Sublimetext is my third favorite
+	# Atom might be your favorite
 ```
 
 ## Notebooks
@@ -1313,15 +1314,50 @@ Directive:
 
 ```
 	%time 	# time in seconds
+	%%timeit # for a whole cell to run
 	%timeit # mean and stdev per loop
+	
+```
+
+## Jupyter Commands
+Here is the documentation for more Jupyter Commands:
+https://nbconvert.readthedocs.io/en/latest/usage.html
+
+```
+	# convert a notebook to html in prompt
+	>jupyter nbconvert --to html notebook.ipynb
+
+	# convert a notebook to slides
+	>jupyter nbconvert notebook.ipynb --to slides
+
+	# add --post serve to immediately see it
+	>jupyter nbconvert notebook.ipynb --to slides --post serve
 ```
 
 ## Magic Command
+Here is the link of more magic commands:
+https://ipython.readthedocs.io/en/stable/interactive/magics.html
+
 ```
 	%matplotlib notebook				# interactive render
 	%matplotlib inline				# create plot instantly
 	%matplotlib gtk					# create plot in new window
 	matplotlibe.style.use('ggplot') # ggplot look
+
+	# to render higher resolution images
+	%config InlineBackend.figure_format = 'retina' 
+```
+
+## Activating Debug in Notebook
+```
+	# to activate
+	%pdb
+
+	# to quit enter q in the prompt
+	q
+
+	# here is the link of the documentation
+	https://docs.python.org/3/library/pdb.html
 ```
 
 ## Imports
@@ -2062,6 +2098,13 @@ profits higher than $100 millions
 
 # Other
 
+## Git
+
+### Create .bashrc
+```
+
+```
+
 ## django
 ```
 	# installing django using Anaconda Distribution
@@ -2324,6 +2367,40 @@ profits higher than $100 millions
 
 
 ## Anaconda Prompt
+
+### Packages
+
+#### Installing
+```
+	>conda install package_name
+```
+
+#### Remove
+```
+	>conda remove pakcage_name
+```
+
+#### Searching
+```
+	>conda search *package_search_name*
+```
+
+#### Update
+```
+	# update conda alone
+	conda update conda
+
+	# update all packages and conda
+	conda update --all
+
+	# update packages
+	conda update package_name
+```
+
+#### nb_conda to manage environment in Jupyter Notebooks
+```
+	conda install nb_conda
+```
 
 ### Enviroments
 https://conda.io/docs/user-guide/tasks/manage-environments.html
