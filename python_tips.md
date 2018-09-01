@@ -1,3 +1,55 @@
+# New unordered content
+
+
+
+## Pandas
+
+### Transposing Uneven List
+```
+	import pandas as pd
+
+	list1 = [1, 2, 3]
+	list2 = [10, 20]
+	list3 = [100]
+
+	list_all = [list1, list2, list3]
+
+	df = pd.DataFrame(list_all, ['list1', 'list2', 'list3']).T
+	
+	# using it with unique values
+	
+	column_names = df.columns.replace(' ', '_')
+	
+	list_unique = []
+	[list_unique.append(df[column].unique()) for column in column_names]
+	
+	df_unique = pd.DataFrame(list_unique, column_names).T
+```
+
+### XlsWriter with Pandas
+```
+
+```
+
+## pyodbc
+
+### Data Connections
+```
+	import os, pyodbc as odbc
+
+	driver = '{'+[x for x in odbc.drivers() if x.find('.accdb')>0][0]+'}'
+	file_path = os.getcwd() + '\\filename.accdb'
+
+	conn_str = 'DRIVER={a};DBQ={b};'.format(a=driver, b=file_path)
+
+	cnxn = odbc.connect(conn_str)
+
+	crsr = cnxn.cursor()
+
+	for table_info in crsr.tables(tableType='TABLE'):
+	    print(table_info.table_name)
+```
+
 # Python Tips: Samuel's Approach
 
 > Here you will find a repository of data mining approaches. These approaches will be updated as I found new and improved ways to solve an issue. Please feel free to do a push request if you find a better way of approaching a problem. Thank you for visiting my repository!
@@ -119,7 +171,7 @@ Special Notes about Python:
 
 	# a function withot a return statment will return None
 	def this_function():
-    	pass
+    		pass
 
 	spam = this_function()
 	print(spam == None) Out[1]: True
@@ -218,7 +270,7 @@ Special Notes about Python:
 
 ```
 
-### Sorted()
+### sorted()
 ```
 	# Sort a list in descending order
 	sorted(yourlist, reverse=True)
@@ -355,14 +407,14 @@ Special Notes about Python:
 	name.replace('s', 'm') # returns manuel
 ```
 
-### .append() = x = not needed
+### .append() 
 ```
 	# adding to the end of a list
 	list = [1, 2, 'three', 2]
 	list.append(2) # returns [1, 2, 'three', 2, 2]
 ```
 
-### .reverse() = x = not needed
+### .reverse()
 ```
 	# sort values in decending order
 	list = [3, 2, 1]
