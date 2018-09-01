@@ -1,7 +1,5 @@
 # New unordered content
 
-
-
 ## Pandas
 
 ### Transposing Uneven List
@@ -929,6 +927,12 @@ Directive:
 
 # Intermediate
 
+## Zip
+```
+	# zip cartesian coordinates
+	x_points, y_points = zip((2, -2), (5, 6), (-4, -4), (-7, 1), (8, 14))
+```
+
 ## Numpy
 > Python does not know how to do calculations on list. With Numpy, you can do calculations on lists, which are arrays in Numpy, since you can calculate over entire arrays.
 ```
@@ -947,9 +951,25 @@ Directive:
 	np.random.normal(mean, std, sample_size)
 ```
 
+### Understand Structure
+```
+	# rows and columns in numpy arrays
+	data = np.array([[col1_row1, col2_row1], [col1_row2, col2_row2], [col1_row3, col2_row3]])
+
+	# slicing structure
+	data[row, columns]
+
+	# getting a numpy array inside a numpy array
+	data[:,:1]
+
+	# getting a numpy array of one column
+	data[:, 1]
+```
+
 ### Methods
 
-#### Stacking arrays into columns
+#### .column_stack()
+> Stacking arrays into columns
 ```
 	# stacking two arrays
 	np.column_stack(np_array1, np_array2)
@@ -957,9 +977,9 @@ Directive:
 	# both arrays must be of the same size
 ```
 
-#### Central Tendency and Variability
+#### .mean(), .median(), .mode(), .std()
+> Central Tendency and Variability
 
-##### .mean(), .median(), .mode(), .std()
 ```
 	# mean of column one
 	np_array = np.array([1, 2, 3], [10, 20, 30])
@@ -971,17 +991,38 @@ Directive:
 	# follow the same concept for the other methods
 ```
 
-#### Measures of Relliability
+#### .corrcoef()
+> Measures of Relliability 
+```
+	# correlation between two variables (columns)
+	np.corrcoef(np_array[:, 0], np_array[:, 1])
+```
 
 #### .logical_and()
 ```
 	np.logical_and(df.menage > 30, df.mensalary > 50000)
 ```
 
-##### .corrcoef()
+#### .matmul()
+> Provides matrix product of two arrays
+> Documentation: https://docs.scipy.org/doc/numpy/reference/generated/numpy.matmul.html
 ```
-	# correlation between two variables (columns)
-	np.corrcoef(np_array[:, 0], np_array[:, 1])
+	import numpy as np
+
+	x = np.array([[4], [5], [6], [7]])
+	x = x[:, :1]
+	w = [1.2]
+
+	result = np.matmul(x, w)
+```
+
+#### .zeros()
+> Return a new array of given shape and type, filled with zeros.
+> Documentation: https://docs.scipy.org/doc/numpy/reference/generated/numpy.zeros.html
+```
+	# creates a numpy array of zeros the size of 
+	# the given column shape of an numpy array
+	zeros = npzeros(np_array.shape[1])
 ```
 
 ### Arrays
