@@ -2,6 +2,17 @@
 
 ## Pandas
 
+### Series
+
+#### Len
+```
+	# to get lenght of items in columns
+	df.column.str.len()
+	
+	# to get the max lenght
+	df.column.str.len().max()
+```
+
 ### Transposing Uneven List
 ```
 	import pandas as pd
