@@ -1,7 +1,11 @@
-import numpy as np
 
-x = np.array([[4], [5], [6], [7]])
-x = x[:, :1]
-w = [1.2]
 
-result = np.matmul(x, w)
+# spliting text delimited with commas
+text = "spam, eggs, ham, bacon"
+menu = text.split(',')
+
+spam_aside = text.split(',', 1)
+print(spam_aside)
+
+bacon_aside = text.rsplit(',', 1)
+print(bacon_aside)

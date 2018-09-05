@@ -203,7 +203,9 @@ Special Notes about Python:
 	print(spam, eggs) # Out[1]: global local
 ```
 
-## If elif Conditional Steatements
+## Conditional Steatements
+
+### If Elif
 ```
 	"""
 	== equals
@@ -229,6 +231,11 @@ Special Notes about Python:
 		print('implicit must not have blanks to pass')
 	else:
 		print('implicit have blanks so it pass here')
+```
+
+### Inline If Statement
+```
+	(1 if bacon > spam else 0)
 ```
 
 ## Built-in Functions
@@ -363,6 +370,10 @@ Special Notes about Python:
 
 	# it shows 12%
 	print("The percentage is {:%}".format(.12))
+
+	# example of rounding
+	print("A person with a BMI of {bmi} has a predicted life expectancy of {life:.2f} years".\
+    		format(bmi=bmi, life=laos_life_exp[0][0]))
 ```
 
 ### .index()
@@ -737,6 +748,16 @@ Directive:
 	list1 == list2 #Out[1]: False
 ```
 
+### Merging two Dictionaries
+> With this technique, values of the second dictionary will override the first.
+```
+	# 3 lines
+	dict1 = {'a': 1, 'b': 2}
+	dict2 = {'c': 3, 'd': 4, 'a': 20}
+
+	dict_combined = {**dict1, **dict2}
+```
+
 ### Dictionary Methods
 
 #### .keys()
@@ -927,6 +948,14 @@ Directive:
 
 # Intermediate
 
+## scikit-learn
+
+### Start a Linear Regression
+```
+	from sklearn.linear_model import LinearRegression
+```
+
+
 ## Zip
 ```
 	# zip cartesian coordinates
@@ -940,6 +969,12 @@ Directive:
 	import numpy as np
 ```
 
+### Importing Data
+```
+	# import a comma delimited csv file
+	data = np.loadtxt('file_path\file.csv', delimeter = ',')
+```
+
 ### Generate Data
 ```
 	# generate 5000 samples
@@ -951,6 +986,12 @@ Directive:
 	np.random.normal(mean, std, sample_size)
 ```
 
+### Generate Random Batches
+```
+	# create the batch
+	np.random.choice(from_zero_to_here, batch_size)
+```
+
 ### Understand Structure
 ```
 	# rows and columns in numpy arrays
@@ -959,7 +1000,7 @@ Directive:
 	# slicing structure
 	data[row, columns]
 
-	# getting a numpy array inside a numpy array
+	# getting a numpy arrays of a column inside a numpy array
 	data[:,:1]
 
 	# getting a numpy array of one column
@@ -967,6 +1008,21 @@ Directive:
 ```
 
 ### Methods
+
+#### .random.rand()
+> Random values in a given shape. It can be useful to create matrixes.
+> Documentation: https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.rand.html
+
+```
+	# import
+	import numpy as np
+
+	# shape a 3 row 2 column matrix
+	matrix_row = 3
+	matrix_col = 2
+
+	matrix = np.random.rand(matrix_row, matrix_col)
+```
 
 #### .column_stack()
 > Stacking arrays into columns
@@ -1024,6 +1080,40 @@ Directive:
 	# the given column shape of an numpy array
 	zeros = npzeros(np_array.shape[1])
 ```
+
+#### .reshape()
+> Gives a new shape to an array w/o changing the data.
+> Documentation: https://docs.scipy.org/doc/numpy/reference/generated/numpy.reshape.html
+```
+	# generating y values and reshaping
+	y_values = np.random.choice(1000, 100).reshape(-1, 1)
+
+	# generating x values and reshaping
+	x_values = np.arange(100).reshape(-1, 1)
+```
+
+#### .values.reshape()
+```
+	# creates a 2d array from the series
+	train_data['Var_X'].values.reshape(-1, 1)
+```
+
+#### .unique()
+> Gets the frequency of unique values in a numpy array
+> Documentation: https://docs.scipy.org/doc/numpy/reference/generated/numpy.unique.html
+```
+	# grabbing the balls
+	red_balls = ['red'] * 4
+	blue_balls = ['blue'] * 10
+
+	# putting the balls in the bucket
+	bucket = red_balls + blue_balls
+
+	# converting to numpy array and counting
+	np_bucket = np.array(bucket)
+	bucket = np.unique(np_bucket, return_counts=True)
+```
+
 
 ### Arrays
 > Numpy arrays can only contain one type of data in contrary to a python list. If there is a mix of data types being converted to Numpy array, all values will be converted to string. Boolean values will be converted to the respective boolean integers, 0 or 1. Unlike a list where + adds to the list, a numpy array will do an addition of the arrays. Given that a Numpy array holds only one datatype, it can calculate way faster than going over a python list.
@@ -1136,6 +1226,35 @@ Directive:
 	sample_rate, audio_data = wavefile.read('sound.wav')
 ```
 
+#### .read_csv parameters
+```
+	# header None for data with no headers
+	"""
+		1.25664,2.04978,-6.23640,4.71926,-4.26931,0.20590,12.31798
+		-3.89012,-0.37511,6.14979,4.94585,-3.57844,0.00640,23.67628
+	"""
+	df = pd.read_csv('data.csv', header=None)
+
+```
+
+### Split a comma delimted file with extra commas
+```
+	# example of data
+	"""
+		Congo, Dem. Rep.,57.5,19.86692
+		Congo, Rep.,58.8,21.87134
+	"""
+	# in this case splitting through the left is the best approach
+
+	data = pd.read_csv(os.listdir()[3]+'\\bmi_and_life_expectancy.csv', sep=',')
+
+	split_columns = data.columns[0].split(',')
+
+	data = data[data.columns[0]].str.rsplit(',', 2, expand=True)
+
+	data.columns = split_columns
+```
+
 ### Data Dump
 
 ```
@@ -1158,6 +1277,17 @@ Directive:
 	df = pd.DataFrame.from_dict(egdict, orient='index',
 									columns=['rowtocol1', 'rowtocol2'])
 ```
+#### .split() and .rsplit()
+```
+	# spliting text delimited with commas
+	text = "spam, eggs, ham, bacon"
+	menu = text.split(',')
+
+	spam_aside = text.split(',', 1)
+
+	bacon_aside = text.rsplit(',', 1)
+```
+
 ### Columns
 #### Add Columns
 ```
