@@ -2,39 +2,6 @@
 
 ## Pandas
 
-### Series
-
-#### Len
-```
-	# to get lenght of items in columns
-	df.column.str.len()
-	
-	# to get the max lenght
-	df.column.str.len().max()
-```
-
-### Transposing Uneven List
-```
-	import pandas as pd
-
-	list1 = [1, 2, 3]
-	list2 = [10, 20]
-	list3 = [100]
-
-	list_all = [list1, list2, list3]
-
-	df = pd.DataFrame(list_all, ['list1', 'list2', 'list3']).T
-	
-	# using it with unique values
-	
-	column_names = df.columns.replace(' ', '_')
-	
-	list_unique = []
-	[list_unique.append(df[column].unique()) for column in column_names]
-	
-	df_unique = pd.DataFrame(list_unique, column_names).T
-```
-
 ### XlsWriter with Pandas
 ```
 
@@ -247,6 +214,8 @@ Special Notes about Python:
 ### Inline If Statement
 ```
 	(1 if bacon > spam else 0)
+
+	[i.lower() for i in documents]
 ```
 
 ## Built-in Functions
@@ -329,18 +298,7 @@ Special Notes about Python:
 
 
 
-## Useful Python Packages and Modules
 
-### random
-
-#### randint()
-```
-	# import 
-	from random import randint
-
-	# get a random numbers from 1 to 20
-	rand_num = randint(1, 20) 
-```
 
 ## Python General Methods
 
@@ -959,6 +917,45 @@ Directive:
 
 # Intermediate
 
+## Packages and Modules
+
+### random
+
+#### randint()
+```
+	# import 
+	from random import randint
+
+	# get a random numbers from 1 to 20
+	rand_num = randint(1, 20) 
+```
+
+### string
+
+#### .punctuation
+> It contains the list of common punctuations to be removed.
+```
+	import string
+
+	# application
+	translation = str.maketrans(string.punctuation, ' '*len(string.punctuation))
+
+	'We need to remove the exclamation!'.translate(translation)
+
+	# another example
+	'string'.translate(str.maketrans('s', 'c'))
+```
+
+### collections
+
+#### .Counter
+```
+	import collections
+
+	# returns a dicitonary of counts
+	collections.Counter(['This words will be counted and counted will be 2'])
+```
+
 ## scikit-learn
 
 ### Start a Linear Regression
@@ -1019,6 +1016,12 @@ Directive:
 ```
 
 ### Methods
+
+#### .hstack()
+> Convert a 2d numpy array to a 1d numpy array.
+```
+
+```
 
 #### .random.rand()
 > Random values in a given shape. It can be useful to create matrixes.
@@ -1219,7 +1222,7 @@ Directive:
 > Unlike general Python and Numpy, pandas can handle different data types in a column or row. The columns correspond to the variables, and the rows correspond to observations.
 
 
-### Data Load
+### Data Extract
 
 ```
 	mat = loadmat('folder/data.mat')
@@ -1266,13 +1269,62 @@ Directive:
 	data.columns = split_columns
 ```
 
-### Data Dump
+### Data Load
 
 ```
 	df.to_sql('table', engine)
 	df.to_excel('folder/data.xlsx')
 	df.to_jason('folder/data.json')
 	df.to_csv('folder/data.csf')
+```
+
+### Series
+
+#### Convert Data Frame to Series
+```
+	# converting to series
+	df.columname
+
+	#or
+
+	df['columnname']
+```
+
+#### Series.len()
+```
+	# to get lenght of items in columns
+	df.column.str.len()
+	
+	# to get the max lenght
+	df.column.str.len().max()
+```
+
+#### Series.map()
+```
+	transformation = {'ham': 0, 'spam': 1}
+	df['label'] = df.label.map(transformation)
+```
+
+### Transposing Uneven List
+```
+	import pandas as pd
+
+	list1 = [1, 2, 3]
+	list2 = [10, 20]
+	list3 = [100]
+
+	list_all = [list1, list2, list3]
+
+	df = pd.DataFrame(list_all, ['list1', 'list2', 'list3']).T
+	
+	# using it with unique values
+	
+	column_names = df.columns.replace(' ', '_')
+	
+	list_unique = []
+	[list_unique.append(df[column].unique()) for column in column_names]
+	
+	df_unique = pd.DataFrame(list_unique, column_names).T
 ```
 
 ### .DataFrame
