@@ -13,7 +13,17 @@
 ### .to_datetime()
 ```
 	# when format is 20180131 yyyymmdd
-	pd.to_datetime(df.Date, format='%Y%m%d')
+	pd.to_datetime('20180131', format='%Y%m%d', errors='ignore')
+	
+	# when format is 20180131 yyyy-mm-dd
+	pd.to_datetime('2018-01-31', format='%Y-%m-%d', errors='ignore')
+	
+	# when format is 01312018 mmddyyyy
+	pd.to_datetime('01312018', format='%m%d%Y', errors='ignore')
+	
+	# when format is 01/31/2018 mm/dd/yyyy
+	pd.to_datetime('01/31/2018', format='%m/%d/%Y', errors='ignore')
+
 ```
 
 ### Avoid Scientific Notation
