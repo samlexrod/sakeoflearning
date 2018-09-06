@@ -2,6 +2,20 @@
 
 ## Pandas
 
+### Manipulate Data
+```
+	# manipulating dates
+	df.Date.apply(lambda x: '{year}-{month}-{day}'.format(year=str(x)[0:4], 
+                                                                 month=str(x)[4:6], 
+                                                                 day=str(x)[-2:]))	
+```
+
+### Avoid Scientific Notation
+```
+	# works globally
+	pd.options.display.float_format = '{:20,.2f}'.format
+```
+
 ### XlsWriter with Pandas
 ```
 
