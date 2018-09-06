@@ -2,12 +2,18 @@
 
 ## Pandas
 
-### Manipulate Data
+### .apply(lambda x:)
 ```
-	# manipulating dates
+	# manipulating dates using lambda
 	df.Date.apply(lambda x: '{year}-{month}-{day}'.format(year=str(x)[0:4], 
                                                                  month=str(x)[4:6], 
-                                                                 day=str(x)[-2:]))	
+                                                                 day=str(x)[-2:]))
+```
+
+### .to_datetime()
+```
+	# when format is 20180131 yyyymmdd
+	pd.to_datetime(df.Date, format='%Y%m%d')
 ```
 
 ### Avoid Scientific Notation
