@@ -910,7 +910,7 @@ Directive:
 			continue
 		print('This will be skipped when spam == 3. Look: ' + str(spam))
 ```
-
+f
 **END BASICS**
 ---
 ---
@@ -956,11 +956,40 @@ Directive:
 	collections.Counter(['This words will be counted and counted will be 2'])
 ```
 
-## scikit-learn
+### os
+
+#### .listdir()
+```
+	# check the files in current folder
+	os.listdir()
+
+	# check the files in child folder
+	os.listdir('root/child')
+```
+
+## sklearn
 
 ### Start a Linear Regression
 ```
 	from sklearn.linear_model import LinearRegression
+```
+
+### CountVectorizer
+```
+	from sklearn.feature_extraction.text import CountVectorizer
+
+	corpus = [
+		"Authman ran faster than Harry because he is an athlete.",
+		"Authman and Harry ran faster and faster."
+	]
+
+	bow = CountVectorizer()
+
+	X = bow.fit_transform(corpus)
+
+	print(X)
+	print(bow.get_feature_names())
+	print(X.toarray())
 ```
 
 
@@ -1340,6 +1369,42 @@ Directive:
 	df = pd.DataFrame.from_dict(egdict, orient='index',
 									columns=['rowtocol1', 'rowtocol2'])
 ```
+
+#### .get_dummies()
+```
+	# create dictionary of categories
+	df = pd.DataFrame({'vertebrates':[
+	'Bird',
+	'Bird',
+	'Mammal',
+	'Fish',
+	'Amphibian',
+	'Reptile',
+	'Mammal',
+	]})
+	
+	# use get_dummies to encode categories
+	df = pd.get_dummies(df, columns=['vertebrates'])
+```
+
+#### df.Series.astype('Category').cat.codes
+```
+	# create dictionary of categories
+	df = pd.DataFrame({'vertebrates':[
+	'Bird',
+	'Bird',
+	'Mammal',
+	'Fish',
+	'Amphibian',
+	'Reptile',
+	'Mammal',
+	]})
+
+	# use series to create new column
+	df['vertebrates_codes'] = df.vertebrates.astype('category').cat.codes
+```
+
+
 #### .split() and .rsplit()
 ```
 	# spliting text delimited with commas
