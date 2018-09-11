@@ -2,35 +2,7 @@
 
 ## Pandas
 
-### .apply(lambda x:)
-```
-	# manipulating dates using lambda
-	df.Date.apply(lambda x: '{year}-{month}-{day}'.format(year=str(x)[0:4], 
-                                                                 month=str(x)[4:6], 
-                                                                 day=str(x)[-2:]))
-```
 
-### .to_datetime()
-```
-	# when format is 20180131 yyyymmdd
-	pd.to_datetime('20180131', format='%Y%m%d', errors='ignore')
-	
-	# when format is 20180131 yyyy-mm-dd
-	pd.to_datetime('2018-01-31', format='%Y-%m-%d', errors='ignore')
-	
-	# when format is 01312018 mmddyyyy
-	pd.to_datetime('01312018', format='%m%d%Y', errors='ignore')
-	
-	# when format is 01/31/2018 mm/dd/yyyy
-	pd.to_datetime('01/31/2018', format='%m/%d/%Y', errors='ignore')
-
-```
-
-### Avoid Scientific Notation
-```
-	# works globally
-	pd.options.display.float_format = '{:20,.2f}'.format
-```
 
 ### XlsWriter with Pandas
 ```
@@ -947,6 +919,11 @@ f
 
 # Intermediate
 
+## Dataset Sources
+```
+	http://archive.ics.uci.edu/ml/index.php
+```
+
 ## Packages and Modules
 
 ### random
@@ -968,12 +945,18 @@ f
 	import string
 
 	# application
-	translation = str.maketrans(string.punctuation, ' '*len(string.punctuation))
+	translation = str.maketrans('', '', string.punctuation)
 
 	'We need to remove the exclamation!'.translate(translation)
+```
 
-	# another example
-	'string'.translate(str.maketrans('s', 'c'))
+#### .maketrans(x, y, z)
+>Documentation: https://www.programiz.com/python-programming/methods/string/maketrans
+```
+	# the first parameter will be replace by the second
+	'string'.translate(str.maketrans('s', 'c', 'g'))
+
+	# this returns ctrin
 ```
 
 ### collections
@@ -1004,7 +987,8 @@ f
 	from sklearn.linear_model import LinearRegression
 ```
 
-### CountVectorizer
+### CountVectorizer .fit_transform()
+>Learn the vocabulary dictionary and return term-document matrix.
 ```
 	from sklearn.feature_extraction.text import CountVectorizer
 
@@ -1021,6 +1005,46 @@ f
 	print(bow.get_feature_names())
 	print(X.toarray())
 ```
+
+### CountVectorizer .fit()
+> Learn a vocabulary dictionary of all tokens in the raw documents.
+```
+	from sklearn.feature_extraction.text import CountVectorizer
+
+	corpus = [
+			"Authman ran faster than Harry because he is an athlete.",
+			"Authman and Harry ran faster and faster."
+		]
+
+	count_vector = CountVectorizer()
+
+	count_vector.fit(corpus)
+
+	count_vector.get_feature_names()
+```
+
+### CountVectorizer to DataFrame
+```
+	count_vector = CountVectorizer()
+
+	count_vector.fit(data)
+	columns = count_vector.get_feature_names()
+	data_array = count_vector.transform(data).to_array()
+	
+	df_frequency_matrix = pd.DataFrame(data_array, columns=columns)
+```
+
+### .model_selection
+
+#### .train_test_split(features, predictors, random_state)
+```
+	from sklearn.model_selection import train_test_split
+
+	X_train, X_test, y_train, y_test = train_test_split(df['sms_message'], 
+														df['label'], 
+														random_state=1)
+```
+
 
 
 ## Zip
@@ -1075,6 +1099,31 @@ f
 ```
 
 ### Methods
+
+#### .where()
+> It provides the index numbers of the conditions that are met in a tuples of a list.
+```
+	preds = [1, 0, 1, 1, 1 0]
+
+	np.where(preds == 1)
+```
+
+#### .intersect1d()
+> It is used to check where two numpy arrays meet each other with same values in the same indexes
+```
+	preds = [1, 0, 1, 1, 1 0]
+	actuals = [1, 0, 0, 1, 1 0]
+
+	# it will return a numpy array of indexes where they match
+	true_positives = np.intersect(np.where(preds == 1), np.where(actuals == 1))
+
+	false_negatives = np.intersect1d(np.where(preds==0), np.where(actual==1))
+
+	# take the count of predictions
+	len(true_positives)
+	len(false_negatives)
+```
+
 
 #### .hstack()
 > Convert a 2d numpy array to a 1d numpy array.
@@ -1337,7 +1386,40 @@ f
 	df.to_csv('folder/data.csf')
 ```
 
+### Avoid Scientific Notation
+```
+	# works globally
+	pd.options.display.float_format = '{:20,.2f}'.format
+```
+
+
 ### Series
+
+### .apply(lambda x:)
+```
+	# manipulating dates using lambda
+	df.Date.apply(lambda x: '{year}-{month}-{day}'.format(year=str(x)[0:4], 
+                                                                 month=str(x)[4:6], 
+                                                                 day=str(x)[-2:]))
+```
+### pd.to_datetime(df.Series)
+```
+	# series example
+	df.Date = pd.to_datetime(df.Date, format='%Y%m%d', errors='ignore')
+
+	# when format is 20180131 yyyymmdd
+	pd.to_datetime('20180131', format='%Y%m%d', errors='ignore')
+	
+	# when format is 20180131 yyyy-mm-dd
+	pd.to_datetime('2018-01-31', format='%Y-%m-%d', errors='ignore')
+	
+	# when format is 01312018 mmddyyyy
+	pd.to_datetime('01312018', format='%m%d%Y', errors='ignore')
+	
+	# when format is 01/31/2018 mm/dd/yyyy
+	pd.to_datetime('01/31/2018', format='%m/%d/%Y', errors='ignore')
+
+```
 
 #### Convert Data Frame to Series
 ```
