@@ -1040,7 +1040,8 @@ f
 ```
 	from sklearn.model_selection import train_test_split
 
-	X_train, X_test, y_train, y_test = train_test_split(df['sms_message'], 
+	# the y variable must be a 1d array such as a series
+	X_train, X_test, y_train, y_test = train_test_split(df[['sms_message']], 
 														df['label'], 
 														random_state=1)
 ```
@@ -1635,6 +1636,28 @@ f
 ```
 
 
+## Seaborn
+
+### .pairplot()
+>
+```
+	# 
+	import seaborn as sns
+
+	#
+	sns.pairplot(df, hue='target');
+```
+
+### .heatmap()
+>
+```
+	# 
+	import seaborn as sns
+
+	#
+	sns.heatmap(df.corr(), annot=True, cmap='YLGnBu');
+```
+
 ## Matplotlib
 
 ### Basic Plot
@@ -1766,6 +1789,49 @@ f
 ---
 
 # Advanced
+
+
+## GridSearchCV, make_scorer, and f1_score
+>
+```
+	# imports
+	from sklearn.metrics import make_scorer, f1_score
+	from sklearn.model_selection import GridSearchCV
+
+	# set scorer to use in grid
+	scorer = make_score(f1_score)
+
+	# set the grid search object
+	grid_obj = GridSearchCV(model, parameters, scoring=scorer)
+
+	# fit the data
+	grid_fit = grid_obj.fit(X_train, y_train)
+
+	# get best estimators
+	best_model = grid_fit.best_estimator_
+
+	# use best model to fit
+	best_model.fit(X_train, y_train)
+```
+
+## RandomizedSearchCV
+```
+	# import
+	from sklearn.model_selection import RandomizedSearchCV
+
+	# assign object
+	random_search = RandomizedSearchCV(model, param_distributions=param_dict)
+
+	# fit model
+	random_search.fit(X_train, y_train)
+
+	# make predictions
+	random_search.best_estimator_.predict(X_test)
+```
+
+## Decission Tree
+
+### Best Parameters to Test
 
 ## Version Check
 ```
@@ -2005,9 +2071,15 @@ https://ipython.readthedocs.io/en/stable/interactive/magics.html
 	df.loc[:, ['col1', 'col2']]
 	df.loc[:, 'col1':'col10']
 
-	# slicing by index
+	# slicing by index as dataframe
 	df.iloc[:, [0, 1]]
-	df.iloc[:, 0:9]
+	df.iloc[:, :9]
+
+	# slicing last row as data frame
+	df.iloc[:, [-1]]
+
+	# slicing last row as data frame
+	df.iloc[:, -1]
 ```
 
 ### **Null Value Percentages**
