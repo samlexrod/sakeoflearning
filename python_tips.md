@@ -917,7 +917,7 @@ f
 ---
 ---
 
-# Intermediate
+# Intermediate and Advance
 
 ## Dataset Sources
 ```
@@ -1237,6 +1237,20 @@ f
 	bucket = np.unique(np_bucket, return_counts=True)
 ```
 
+#### .argsort()
+> Returns the indices that would sort an array.
+> Documentation: https://docs.scipy.org/doc/numpy/reference/generated/numpy.argsort.html
+```
+	x = ['blue', 'yellow', 'green']
+	np.argsort(x)
+```
+
+#### .sort()
+> Return a sorted copy of an array.
+> Documentation: https://docs.scipy.org/doc/numpy/reference/generated/numpy.sort.html
+```
+	
+```
 
 ### Arrays
 > Numpy arrays can only contain one type of data in contrary to a python list. If there is a mix of data types being converted to Numpy array, all values will be converted to string. Boolean values will be converted to the respective boolean integers, 0 or 1. Unlike a list where + adds to the list, a numpy array will do an addition of the arrays. Given that a Numpy array holds only one datatype, it can calculate way faster than going over a python list.
@@ -1323,9 +1337,13 @@ f
 	# mutiplication by column and array
 	In [4]: np_2d_array * np.array([10, 100])
 	Out[4]: array([[10, 200], [30, 400]])
-
 ```
 
+#### Inverting Arrays
+```
+	x = ['blue', 'yellow', 'green']
+	x[::-1]
+```
 
 ## The beauty of Pandas
 > Unlike general Python and Numpy, pandas can handle different data types in a column or row. The columns correspond to the variables, and the rows correspond to observations.
@@ -1784,11 +1802,30 @@ f
 
 ## Grammar of Graphics (ggplot) in Python
 
-**END INTERMEDIATE**
+## Machine Learning
+
+### Accuracy
+```
+	accuracy = (df.TruePositive.sum() + df.TrueNegative.sum()) / df.sum().sum()
+```
+### Recall
+```
+	recall = (df.TruePositive.sum() / (df.TruePositive.sum() + df.FalseNegative.sum()))
+```
+### Precission
+```
+	precision = (df.TruePositive.sum() / (df.TruePositive.sum() + df.FalsePositive.sum()))
+```
+### FScore
+```
+	harmonic = (2 * (precision * recall)/(precision + recall))
+```
+
+**END INTERMEDIATE TO ADVANCED**
 ---
 ---
 
-# Advanced
+# In Practice and Machine Learning
 
 
 ## GridSearchCV, make_scorer, and f1_score
@@ -2902,6 +2939,18 @@ profits higher than $100 millions
 
 
 ## Anaconda Prompt
+
+### Change Jupyter Notebook Directory
+>Documentation: https://jupyter-notebook.readthedocs.io/en/stable/config.html
+```
+	>jupyter notebook --generate-config
+
+	#NotebookApp.notebook_dir : Unicode
+	# Default: 'D:\new_path'
+
+	#The directory to use for notebooks and kernels.
+```
+
 
 ### Packages
 
