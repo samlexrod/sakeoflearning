@@ -19,3 +19,16 @@ df.columns = ['column', 'map']
 df.set_index('column', inplace=True)
 df.to_dict('records')
 ```
+
+-Assign only where condition meet with multiple conditions
+```python
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame({'col1': ['a', 'b', 'c', 6, 7, 8, '?'], 'col2': ['letter', 'letter', 'letter', 'number', 'number', 'number', 'question']})
+conditions = (df.col2.isin(['letter', 'number']))
+print(conditions)
+df['col3'] = np.where(conditions, df.col2 + ' ' + df.col1.astype(str), df.col1)
+display(df)
+```
+
