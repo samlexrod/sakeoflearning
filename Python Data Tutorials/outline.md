@@ -32,3 +32,7 @@ df['col3'] = np.where(conditions, df.col2 + ' ' + df.col1.astype(str), df.col1)
 display(df)
 ```
 
+-Melt tutorial
+```python
+
+```
