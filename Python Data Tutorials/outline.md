@@ -1,3 +1,13 @@
+# os.startfile()
+
+```python
+import subprocess
+subprocess.call([r"C:\path\execute.exe"]
+
+os.startfie(r"C:\path\filename.ext", 'open')
+```
+
+
 # Ideas to cover
 - pandas index
   - transpose pd.DataFrame({'col1': [1, 2, 3, 4, 5]
