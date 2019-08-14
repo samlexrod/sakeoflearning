@@ -6,3 +6,7 @@ df.iloc[:, 0:3].apply(lambda row: '|'.join(row.values), axis=1)
 ```python
 df.series1.isin(['letter', 'number']))
 ```
+# Adjust the legend of a plot
+```python
+plt.legend(loc='center left', bbox_to_anchor=(1.0, 0.5))
+```
