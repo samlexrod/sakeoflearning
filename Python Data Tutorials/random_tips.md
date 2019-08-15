@@ -10,3 +10,12 @@ df.series1.isin(['letter', 'number']))
 ```python
 plt.legend(loc='center left', bbox_to_anchor=(1.0, 0.5))
 ```
+# Change aestetics of boxplot in matplotlib
+https://matplotlib.org/api/_as_gen/matplotlib.pyplot.boxplot.html#matplotlib.pyplot.boxplot
+```python
+df.series1.plot.box(vert=False, showfliers=True, 
+                   flierprops=red_square,
+                   showmeans=True,
+                   showcaps=True,
+                   figsize=(10, 2));
+```
