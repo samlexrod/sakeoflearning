@@ -19,3 +19,7 @@ df.series1.plot.box(vert=False, showfliers=True,
                    showcaps=True,
                    figsize=(10, 2));
 ```
+# Avoid scientific notation in matplotlib
+```python
+plt.ticklabel_format(axis='y', style='plain')
+```
