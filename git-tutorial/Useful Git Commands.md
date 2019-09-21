@@ -80,6 +80,8 @@
     - to remove a folder or file  tracked by git
 > git rm -f itemname
     - to force remove a folder or file staged by git
+> git rm --cached <file>
+    - to remove tracked files
 > git config --global alias.aliasname "long git command"
 > git config --global alias.hist "log --all --graph -- decorate --oneline"
     - to  show summary of commit by using just alias
