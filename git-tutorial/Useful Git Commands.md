@@ -178,3 +178,39 @@ First, we need to install p4merge (Helix Visual Merge Tool)
 > git diff HEAD
     - to show differences from working to head
 ```
+
+## Branching and Mergin Commands
+```cmd
+> git branch -a
+> git branch --all
+    - to show all available branches including origin master
+> git branch mynewbranch
+    - to create a new branch
+> git checkout mynewbranch
+    - to change to another branch
+> git checkout -b mynewbranch
+    - to create and change to the new branch
+> git branch mynewbranch newbranch
+    - to change the name of the branch
+> git branch -d delbranch
+    - to delete a branch (not from same branch)
+> git diff master anyotherbranch
+    - to compare staged commits with the master before mergin
+> git merge anyotherbranch
+    - to merge any other branch to the active branch
+> git merge anyotherbranch --no-ff
+    _ to merge with not fast forward
+```
+
+## Rebasing
+```cmd
+> git rebase master
+    - to rebase from master to newbranch
+> git rebase newbranch
+    - to rebase from newbranch to master
+> git rebase --abort
+    - to abort the rebase when conflicting
+```
+
+## Mergin Terminology
+Fast Forward Branch - it happes when there is no commits on the master branch and any other branch is merged in continuation from the time the other brach was separated from the master.
