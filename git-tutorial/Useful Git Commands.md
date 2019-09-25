@@ -143,6 +143,12 @@
 > git push origin master
     - to push the repository the the cloned 
     cloud source
+> git pull origin master
+    - to pull from the remote repository to local
+> git pull --rebase origin master
+    - to rebase on top of the local repository from remote
+> git fetch origin master
+    - to simply update references between local and remote
 > notepad.exe .gitignore
     - to create the exclussion file
     *.csv will ignore all csv files
