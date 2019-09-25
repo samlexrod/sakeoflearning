@@ -80,6 +80,10 @@
     - to remove a folder or file  tracked by git
 > git rm -f itemname
     - to force remove a folder or file staged by git
+> git rm --cached <file>
+    - to remove tracked files
+> git rm -r --cached <folder>
+    - to remove tracked folders and files
 > git config --global alias.aliasname "long git command"
 > git config --global alias.hist "log --all --graph -- decorate --oneline"
     - to  show summary of commit by using just alias
@@ -184,6 +188,7 @@ First, we need to install p4merge (Helix Visual Merge Tool)
 > git diff HEAD
     - to show differences from working to head
 ```
+<<<<<<< HEAD
 
 ## Branching and Mergin Commands
 ```cmd
@@ -220,3 +225,5 @@ First, we need to install p4merge (Helix Visual Merge Tool)
 
 ## Mergin Terminology
 Fast Forward Branch - it happes when there is no commits on the master branch and any other branch is merged in continuation from the time the other brach was separated from the master.
+=======
+>>>>>>> c75ef2fe3add431009a6aa917f52fb9d115f1b0e
