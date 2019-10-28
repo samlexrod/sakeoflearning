@@ -15,18 +15,18 @@ AS
 *	returns a table with the results
 *****************************************/
 BEGIN
-	DECLARE @w_XML AS XML;
+	DECLARE @XML AS XML;
 	BEGIN
 	IF @IsNewLine = 1 SET @Delimiter=CHAR(13);
 	END;
 
 	SET @w_XML = N'<root><row>' + REPLACE(@String, @Delimiter, '</row><row>') + '</row></root>';
 
-	--PRINT CONVERT(VARCHAR(MAX), @w_XML);
+	--PRINT CONVERT(VARCHAR(MAX), @XML);
 
 	INSERT INTO @Table(Result)
 	SELECT Item.value('.', 'VARCHAR(MAX)') AS Value
-	FROM @w_XML.nodes('//root/row') AS Items(Item);
+	FROM @XML.nodes('//root/row') AS Items(Item);
 
 	RETURN;
 END
