@@ -20,7 +20,7 @@ BEGIN
 	IF @IsNewLine = 1 SET @Delimiter=CHAR(13);
 	END;
 
-	SET @w_XML = N'<root><row>' + REPLACE(@String, @Delimiter, '</row><row>') + '</row></root>';
+	SET @XML = N'<root><row>' + REPLACE(@String, @Delimiter, '</row><row>') + '</row></root>';
 
 	--PRINT CONVERT(VARCHAR(MAX), @XML);
 
