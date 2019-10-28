@@ -10,7 +10,7 @@ RETURNS @Table TABLE (
 AS
 /****************************************
 * Author: Samuel Rodriguez
-* Tytle: Data Science Analyst
+* Title: Data Science Analyst
 * Description: Split any string or varchar by a delimiter
 *	returns a table with the results
 *****************************************/
