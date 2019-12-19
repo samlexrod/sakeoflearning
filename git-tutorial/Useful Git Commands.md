@@ -3,7 +3,7 @@
 git init
 git add .
 git commit -m "First commit"
-git remote add origin remote repository https://github.com/user/repo.git
+git remote add origin https://github.com/user/repo.git
 git remote -v
 git push origin master
 ```
