@@ -1,3 +1,13 @@
+# Connect a remote connection to local git repo
+```cmd
+git init
+git add .
+git commit -m "First commit"
+git remote add origin remote repository https://github.com/user/repo.git
+git remote -v
+git push origin master
+```
+
 # These are the most used git commands available
 
 ## Basic cmd Commands
