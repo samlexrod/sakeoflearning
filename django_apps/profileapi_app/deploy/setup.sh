@@ -3,7 +3,7 @@
 set -e
 
 # TODO: Set to URL of git repo.
-PROJECT_GIT_URL='https://github.com/CHANGEME.git'
+PROJECT_GIT_URL='https://github.com/samlexrod/sakeoflearning.git'
 
 PROJECT_BASE_PATH='/usr/local/apps/profiles-rest-api'
 
