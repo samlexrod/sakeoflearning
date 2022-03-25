@@ -15,7 +15,7 @@ echo "Creating project directory..."
 mkdir -p $PROJECT_GIT_PATH
 git clone $PROJECT_GIT_URL $PROJECT_GIT_PATH
 
-PROJECT_BASE_PATH= $PROJECT_GIT_PATH/sakeoflearning/django_apps/profileapi_app
+PROJECT_BASE_PATH= $PROJECT_GIT_PATH/django_apps/profileapi_app
 
 # Create virtual environment
 echo "Creating virtual environment..."
