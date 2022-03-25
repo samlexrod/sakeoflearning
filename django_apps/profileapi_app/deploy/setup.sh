@@ -6,16 +6,16 @@ set -e
 PROJECT_GIT_URL='https://github.com/samlexrod/sakeoflearning.git'
 
 PROJECT_GIT_PATH='/usr/local/apps/profiles-rest-api'
+echo "Installing dependencies..."
+apt-get update
+apt-get install -y python3-dev python3-venv sqlite python-pip supervisor nginx git
+
+# Create project directory
+echo "Creating project directory..."
+mkdir -p $PROJECT_GIT_PATH
+git clone $PROJECT_GIT_URL $PROJECT_GIT_PATH
+
 PROJECT_BASE_PATH= $PROJECT_GIT_PATH/sakeoflearning/django_apps/profileapi_app
-
-# echo "Installing dependencies..."
-# apt-get update
-# apt-get install -y python3-dev python3-venv sqlite python-pip supervisor nginx git
-
-# # Create project directory
-# echo "Creating project directory..."
-# mkdir -p $PROJECT_GIT_PATH
-# git clone $PROJECT_GIT_URL $PROJECT_GIT_PATH
 
 # # Create virtual environment
 # echo "Creating virtual environment..."
