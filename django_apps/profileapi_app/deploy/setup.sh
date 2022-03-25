@@ -6,7 +6,7 @@ set -e
 PROJECT_GIT_URL='https://github.com/samlexrod/sakeoflearning.git'
 
 PROJECT_GIT_PATH='/usr/local/apps/profiles-rest-api'
-PROJECT_BASE_PATH= "${PROJECT_GIT_PATH}/django_apps/profileapi_app"
+PROJECT_BASE_PATH= $PROJECT_GIT_PATH/django_apps/profileapi_app
 
 echo "Installing dependencies..."
 apt-get update
