@@ -138,3 +138,6 @@ static/
 
 # Do not include the following files 
 *test*
+
+# Do not include images
+*.jpg
