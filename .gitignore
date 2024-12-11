@@ -141,3 +141,7 @@ static/
 
 # Do not include images
 *.jpg
+
+# Do not include the following directories
+**/llm/results/**
+**/llm/models/**
