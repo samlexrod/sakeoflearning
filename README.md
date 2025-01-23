@@ -1,7 +1,9 @@
 # SilverAIWolf Learning
 
-## Introduction
-The purpose of this repository is to document my learning journey in the field of Data Science and Machine Learning. It is mainly foucused in the following areas:
+## Overview
+The purpose of this repository is to document my learning journey in the field of Data Science and Machine Learning and to share my knowledge with the community. I will be sharing tutorials, code snippets, and best practices that I have learned over the years. I will be using Python as the primary programming language and Jupyter Notebooks as the primary tool for documentation.
+
+It is mainly foucused in the following areas:
 - Data Engineering
     - Data Ingestion
     - Data Processing
