@@ -1,6 +1,6 @@
 # SilverAIWolf Learning
 
-![SilverAIWolf Learning](SilverAiWolf.png)
+![SilverAIWolf Learning](./SilverAiWolf.png)
 
 ## Overview
 The purpose of this repository is to document my learning journey in the field of Data Science and Machine Learning and to share my knowledge with the community. I will be sharing tutorials, code snippets, and best practices that I have learned over the years. I will be using Python as the primary programming language and Jupyter Notebooks as the primary tool for documentation.
