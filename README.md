@@ -49,13 +49,14 @@ It is mainly focused in the following areas:
 - Software Engineering Best Practices for Data Science Projects
 
 ## Completed Tutorials
+- [x] [FastAPI Quickstart](https://github.com/samlexrod/silveraiwolf-learning/blob/master/tutorials/tools-and-frameworks/fastapi/fastapi-quickstart.ipynb)
 
 
 ## Work in Progress
+- [ ] [FastAPI Real-time API](https://github.com/samlexrod/sakeoflearning/blob/master/tutorials/tools-and-frameworks/fastapi/fastapi-real-time-api.ipynb)
 - [ ] [MLflow Model Serving](https://github.com/samlexrod/sakeoflearning/blob/master/tutorials/tools-and-frameworks/mlflow/mlflow-model-serving.ipynb)
 - [ ] [MLflow FastAPI Integration](https://github.com/samlexrod/sakeoflearning/blob/master/tutorials/tools-and-frameworks/mlflow/mlflow-fastapi-integration.ipynb)
 - [ ] [FastAPI Websockets Integration](https://github.com/samlexrod/sakeoflearning/blob/master/tutorials/tools-and-frameworks/fastapi/fastapi-websockets-integration.ipynb)
-- [ ] [FastAPI Real-time API](https://github.com/samlexrod/sakeoflearning/blob/master/tutorials/tools-and-frameworks/fastapi/fastapi-real-time-api.ipynb)
 - [ ] [FastAPI Model Serving](https://github.com/samlexrod/sakeoflearning/blob/master/tutorials/tools-and-frameworks/fastapi/fastapi-model-serving.ipynb)
 - [ ] [Dockerize FastAPI App](https://github.com/samlexrod/sakeoflearning/blob/master/tutorials/tools-and-frameworks/docker/dockerize-fastapi-app.ipynb)
 - [ ] [Deploy FastAPI with Kubernetes](https://github.com/samlexrod/sakeoflearning/blob/master/tutorials/tools-and-frameworks/docker/deploy-fastapi-with-kubernetes.ipynb)
