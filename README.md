@@ -50,10 +50,10 @@ It is mainly focused in the following areas:
 
 ## Completed Tutorials
 - [x] [FastAPI Quickstart](https://github.com/samlexrod/silveraiwolf-learning/blob/master/tutorials/tools-and-frameworks/fastapi/fastapi-quickstart.ipynb)
-
+- [x] [FastAPI Real-time API](https://github.com/samlexrod/sakeoflearning/blob/master/tutorials/tools-and-frameworks/fastapi/fastapi-real-time-api.ipynb)
 
 ## Work in Progress
-- [ ] [FastAPI Real-time API](https://github.com/samlexrod/sakeoflearning/blob/master/tutorials/tools-and-frameworks/fastapi/fastapi-real-time-api.ipynb)
+
 - [ ] [FastAPI Pydantic Models](https://github.com/samlexrod/silveraiwolf-learning/blob/master/tutorials/tools-and-frameworks/fastapi/fastapi-pydantic-models.ipynb)
 - [ ] [MLflow FastAPI Integration](https://github.com/samlexrod/sakeoflearning/blob/master/tutorials/tools-and-frameworks/mlflow/mlflow-fastapi-integration.ipynb)
 - [ ] [FastAPI Websockets Integration](https://github.com/samlexrod/sakeoflearning/blob/master/tutorials/tools-and-frameworks/fastapi/fastapi-websockets-integration.ipynb)
