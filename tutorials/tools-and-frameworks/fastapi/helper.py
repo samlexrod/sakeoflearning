@@ -38,3 +38,12 @@ def clean_tutorial():
         if process.stderr:
             print(f"Error:\n{process.stderr}")
         print("-" * 40)
+
+def kernel_validation():
+    user_input = input("Is the notebook running in `SilverAIWolf (FastAPI)? Type `yes` to continue: ")
+
+    if user_input.lower() != "yes":
+        msg = "The notebook must be running with `SilverAIWolf (FastAPI)` environment."
+        raise Exception(msg)
+        
+    
