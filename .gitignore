@@ -146,3 +146,6 @@ static/
 # Do not include the following directories
 **/llm/results/**
 **/llm/models/**
+
+# Other
+.virtual_documents/
