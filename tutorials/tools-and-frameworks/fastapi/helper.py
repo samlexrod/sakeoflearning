@@ -3,6 +3,13 @@ import os
 
 def run_fastapi(port):
     """
+    This function runs the FastAPI server in a subprocess.
+
+    Parameters:
+    port (int): The port to run the FastAPI server on.
+
+    Returns:
+    subprocess.Popen: The FastAPI process
     """
     # Command to activate the virtual environment and run the FastAPI server
     command = f"source fastapi-env/bin/activate && uvicorn main:app --reload --port {port}"
@@ -10,14 +17,15 @@ def run_fastapi(port):
     # Run the command in the shell with Popen
     fastapi_process = subprocess.Popen(command, shell=True, executable="/bin/bash", preexec_fn=os.setsid)
 
+    return fastapi_process
+
 
 def clean_tutorial():
     """
+    This function cleans up the artifacts created during the tutorial.
     """
     # Activate the environment, uninstall the kernel, list kernels, and remove main.py
     commands = [
-        "source fastapi-env/bin/activate && jupyter kernelspec uninstall -y fastapi-env",
-        "jupyter kernelspec list",
         "rm -f main.py"
     ]
     
