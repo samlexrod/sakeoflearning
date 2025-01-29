@@ -149,3 +149,10 @@ static/
 
 # Other
 .virtual_documents/
+
+# Do not include model files
+*.pkl
+*.pth
+*.pt
+**/saved_model/**
+main.py
