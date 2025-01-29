@@ -1,5 +1,61 @@
 import subprocess
 import os
+import warning
+
+class FastAPIServer:
+    """
+    A class to manage the lifecycle of a FastAPI server.
+    """
+
+    def __init__(self, port, venv_path="fastapi-env", app_module="main:app"):
+        """
+        Initializes the FastAPI server manager.
+
+        Parameters:
+        port (int): The port to run the FastAPI server on.
+        venv_path (str): Path to the virtual environment. Default is 'fastapi-env'.
+        app_module (str): The FastAPI app module (e.g., 'main:app').
+        """
+        self.port = port
+        self.venv_path = venv_path
+        self.app_module = app_module
+        self.process = None
+
+    def run(self):
+        """
+        Starts the FastAPI server in a subprocess.
+        """
+        if self.process is not None:
+            print("FastAPI server is already running.")
+            return
+
+        # Command to activate the virtual environment and run the FastAPI server
+        command = (
+            f"source {self.venv_path}/bin/activate && uvicorn {self.app_module} --reload --port {self.port}"
+        )
+        
+        # Start the server process
+        self.process = subprocess.Popen(
+            command, shell=True, executable="/bin/bash", preexec_fn=os.setsid
+        )
+        print(f"FastAPI server started on port {self.port}.")
+        print("Use .stop() method to kill the server.")
+
+    def stop(self):
+        """
+        Stops the FastAPI server subprocess.
+        """
+        if self.process is None:
+            print("FastAPI server is not running.")
+            return
+
+        try:
+            # Kill the process group
+            os.killpg(os.getpgid(self.process.pid), signal.SIGTERM)
+            self.process = None
+            print("FastAPI server stopped.")
+        except Exception as e:
+            print(f"Error stopping FastAPI server: {e}")
 
 def run_fastapi(port):
     """
@@ -10,7 +66,8 @@ def run_fastapi(port):
 
     Returns:
     subprocess.Popen: The FastAPI process
-    """
+    """   
+    msg = "This function will be deprecated on the next push. Please use the FastAPIServer class from the helper.py file."
     # Command to activate the virtual environment and run the FastAPI server
     command = f"source fastapi-env/bin/activate && uvicorn main:app --reload --port {port}"
     
